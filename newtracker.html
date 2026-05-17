@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<meta name="apple-mobile-web-app-capable" content="yes"/>
+<title>LN Worksite Tracker</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=DM+Mono:wght@500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css"/>
+<style>
+:root{
+  --bg:#f2f1ee;--surface:#fff;--surface2:#f7f6f3;--border:#e5e3de;
+  --text:#1a1917;--text2:#6b6860;--text3:#a8a59f;
+  --accent:#1b4f8a;--accent-lt:#e8f0fb;--accent-tx:#1b4f8a;
+  --ok:#166534;--ok-bg:#dcfce7;
+  --warn:#92400e;--warn-bg:#fef3c7;
+  --danger:#991b1b;--danger-bg:#fee2e2;
+  --r:12px;--rs:8px;
+  --sh:0 1px 3px rgba(0,0,0,0.07);--sh-lg:0 8px 32px rgba(0,0,0,0.13);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%;background:var(--bg);font-family:'DM Sans',system-ui,sans-serif;color:var(--text);font-size:15px;line-height:1.5}
+.bar{background:var(--accent);color:#fff;padding:14px 16px 12px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.bar-t{font-size:16px;font-weight:600}.bar-s{font-size:11px;opacity:.7;margin-top:1px}
+.dot{width:8px;height:8px;border-radius:50%;background:#4ade80;transition:background .3s;flex-shrink:0}
+.dot.busy{background:#fbbf24;animation:pu 1s infinite}.dot.err{background:#f87171}
+@keyframes pu{0%,100%{opacity:1}50%{opacity:.4}}
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 14px 0}
+.sc{background:var(--surface);border-radius:var(--r);padding:13px 14px;border:1px solid var(--border)}
+.sl{font-size:11px;color:var(--text2);font-weight:500;margin-bottom:4px;line-height:1.3}
+.sv{font-size:26px;font-weight:600;color:var(--text);font-family:'DM Mono',monospace;letter-spacing:-.03em}
+.sv.w{color:#d97706}.sv.d{color:#dc2626}
+.fb{padding:12px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.fb::-webkit-scrollbar{display:none}
+.fc{flex-shrink:0;font-size:12px;font-weight:500;padding:6px 13px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap}
+.fc.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.sw{padding:0 14px 10px;position:relative}
+.sw input{width:100%;padding:10px 14px 10px 38px;border:1px solid var(--border);border-radius:var(--rs);font-size:14px;font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--text);outline:none}
+.sw input:focus{border-color:var(--accent)}
+.si{position:absolute;left:28px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:16px;pointer-events:none}
+.cl{padding:0 14px 100px;display:flex;flex-direction:column;gap:10px}
+.ac{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
+.ac.al{border-left:3px solid #dc2626}.ac.wn{border-left:3px solid #d97706}
+.ch{display:flex;align-items:flex-start;justify-content:space-between;padding:13px 13px 8px}
+.cb{font-size:15px;font-weight:600;color:var(--text);line-height:1.2}
+.cm{font-size:12px;color:var(--text2);margin-top:3px}
+.ca{display:flex;gap:4px;flex-shrink:0;margin-left:8px}
+.ib{background:none;border:none;cursor:pointer;color:var(--text3);padding:5px;border-radius:6px;font-size:16px;line-height:1}
+.ib:hover{color:var(--text);background:var(--surface2)}
+.cbg{display:flex;flex-wrap:wrap;gap:6px;padding:0 13px 10px}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+.bok{background:var(--ok-bg);color:var(--ok)}
+.bwn{background:var(--warn-bg);color:var(--warn)}
+.bdn{background:var(--danger-bg);color:var(--danger)}
+.bgy{background:var(--surface2);color:var(--text2);border:1px solid var(--border)}
+.bac{background:var(--accent-lt);color:var(--accent-tx)}
+.cdiv{height:1px;background:var(--border);margin:0 13px}
+.cfoot{padding:9px 13px;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.cal-btn{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:5px 10px;border-radius:20px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);cursor:pointer;text-decoration:none;white-space:nowrap;transition:all .15s}
+.cal-btn:hover{background:var(--accent-lt);color:var(--accent-tx);border-color:var(--accent-tx)}
+.cnotes{font-size:11px;color:var(--text3);padding:0 13px 10px}
+.fab{position:fixed;bottom:22px;right:18px;width:56px;height:56px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:26px;cursor:pointer;box-shadow:var(--sh-lg);display:flex;align-items:center;justify-content:center;z-index:200;transition:transform .15s}
+.fab:active{transform:scale(.94)}
+.empty{text-align:center;padding:3rem 1rem;color:var(--text3);font-size:14px}
+.empty i{font-size:36px;display:block;margin-bottom:10px;opacity:.4}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:flex-end;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:var(--surface);border-radius:20px 20px 0 0;width:100%;max-width:520px;max-height:92vh;overflow-y:auto;padding:0 0 env(safe-area-inset-bottom,16px)}
+.mh{width:36px;height:4px;background:var(--border);border-radius:2px;margin:12px auto 0}
+.mhd{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 10px}
+.mhd h3{font-size:17px;font-weight:600}
+.mb{padding:0 18px 20px}
+.fsec{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.07em;margin:18px 0 10px;display:flex;align-items:center;gap:6px}
+.fsec:first-of-type{margin-top:4px}
+.fr{margin-bottom:12px}
+.fr label{display:block;font-size:13px;color:var(--text2);font-weight:500;margin-bottom:5px}
+.fr input,.fr select{width:100%;font-size:15px;padding:11px 13px;border:1px solid var(--border);border-radius:var(--rs);font-family:'DM Sans',sans-serif;color:var(--text);background:var(--surface);outline:none;-webkit-appearance:none;appearance:none}
+.fr input:focus,.fr select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(27,79,138,0.1)}
+.fr .hint{font-size:11px;color:var(--text3);margin-top:4px}
+.auto-field{background:var(--surface2);border-radius:var(--rs);padding:11px 13px;font-size:14px;color:var(--text2);border:1px solid var(--border);margin-bottom:12px}
+.auto-field .af-label{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.auto-field .af-val{font-size:15px;color:var(--text);font-weight:500}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mfoot{padding:12px 18px;border-top:1px solid var(--border);display:flex;gap:10px;position:sticky;bottom:0;background:var(--surface)}
+.btn-p{flex:1;padding:13px;background:var(--accent);color:#fff;border:none;border-radius:var(--rs);font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer}
+.btn-p:active{opacity:.85}
+.btn-s{padding:13px 18px;background:var(--surface2);color:var(--text2);border:1px solid var(--border);border-radius:var(--rs);font-size:15px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer}
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a1917;color:#fff;padding:10px 18px;border-radius:20px;font-size:13px;font-weight:500;z-index:999;opacity:0;transition:all .25s;pointer-events:none;white-space:nowrap}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+#cfg{position:fixed;inset:0;background:var(--bg);z-index:900;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem}
+#cfg.hidden{display:none}
+.cfg-logo{font-size:44px;margin-bottom:1rem;color:var(--accent)}
+.cfg-title{font-size:22px;font-weight:700;color:var(--text);margin-bottom:6px;text-align:center}
+.cfg-sub{font-size:14px;color:var(--text2);text-align:center;margin-bottom:2rem;line-height:1.6;max-width:340px}
+.cfg-in{width:100%;max-width:380px;padding:13px 15px;border:1.5px solid var(--border);border-radius:var(--rs);font-size:15px;font-family:'DM Sans',sans-serif;color:var(--text);background:var(--surface);outline:none;margin-bottom:10px}
+.cfg-in:focus{border-color:var(--accent)}
+.cfg-btn{width:100%;max-width:380px;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:var(--rs);font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;margin-bottom:10px}
+.cfg-hint{font-size:12px;color:var(--text3);text-align:center;max-width:340px;line-height:1.6}
+</style>
+</head>
+<body>
+
+<div id="cfg">
+  <div class="cfg-logo"><i class="ti ti-building-skyscraper"></i></div>
+  <div class="cfg-title">LN Worksite Tracker</div>
+  <div class="cfg-sub">Paste your Google Apps Script Web App URL to connect your Google Sheet.</div>
+  <input class="cfg-in" id="cfg-url" type="url" placeholder="https://script.google.com/macros/s/.../exec" autocorrect="off" autocapitalize="off"/>
+  <button class="cfg-btn" onclick="saveConfig()">Connect &amp; Continue</button>
+  <div class="cfg-hint">You only need to do this once per device.</div>
+</div>
+
+<div id="app" style="display:none">
+  <div class="bar">
+    <div>
+      <div class="bar-t">LN Worksite Tracker</div>
+      <div class="bar-s">Liberty National</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="font-size:11px;opacity:.8" id="synclbl">Synced</span>
+      <div class="dot" id="dot"></div>
+    </div>
+  </div>
+
+  <div class="sg">
+    <div class="sc"><div class="sl">Total accounts</div><div class="sv" id="s0">—</div></div>
+    <div class="sc"><div class="sl">Blue books pending</div><div class="sv" id="s1">—</div></div>
+    <div class="sc"><div class="sl">Deductions overdue</div><div class="sv" id="s2">—</div></div>
+    <div class="sc"><div class="sl">Alerts this week</div><div class="sv" id="s3">—</div></div>
+    <div class="sc" style="grid-column:1/-1"><div class="sl">Mid-year or re-enrollment due within 42 days</div><div class="sv" id="s4">—</div></div>
+  </div>
+
+  <div class="fb">
+    <div class="fc on" onclick="setF('all',this)">All</div>
+    <div class="fc" onclick="setF('bb',this)">Blue book pending</div>
+    <div class="fc" onclick="setF('ded',this)">Deductions overdue</div>
+    <div class="fc" onclick="setF('mid',this)">Mid-year due</div>
+    <div class="fc" onclick="setF('re',this)">Re-enrollment due</div>
+    <div class="fc" onclick="setF('any',this)">Any alert</div>
+  </div>
+
+  <div class="sw">
+    <i class="ti ti-search si"></i>
+    <input type="text" id="srch" placeholder="Search business, agent, owner..." oninput="render()"/>
+  </div>
+
+  <div class="cl" id="cards"></div>
+</div>
+
+<button class="fab" id="fab" onclick="openModal()" style="display:none" aria-label="Add account">
+  <i class="ti ti-plus"></i>
+</button>
+
+<div class="modal-bg" id="mbg" onclick="bgClick(event)">
+  <div class="modal">
+    <div class="mh"></div>
+    <div class="mhd">
+      <h3 id="mtitle">Add account</h3>
+      <button class="ib" onclick="closeModal()" aria-label="Close"><i class="ti ti-x"></i></button>
+    </div>
+    <div class="mb">
+      <div class="fsec"><i class="ti ti-building" style="font-size:14px"></i> Business info</div>
+      <div class="fr"><label>Business name *</label><input type="text" id="f-biz" autocomplete="organization"/></div>
+      <div class="g2">
+        <div class="fr"><label>Account owner</label><input type="text" id="f-owner" placeholder="Your name"/></div>
+        <div class="fr"><label>Agent assigned</label><input type="text" id="f-agent" placeholder="Agent name"/></div>
+      </div>
+
+      <div class="fsec"><i class="ti ti-calendar" style="font-size:14px"></i> Enrollment</div>
+      <div class="g2">
+        <div class="fr">
+          <label>Initial enrollment date *</label>
+          <input type="date" id="f-enroll" oninput="onEnrollChange()"/>
+          <div class="hint">Mid-year &amp; re-enrollment auto-calculate from this</div>
+        </div>
+        <div class="fr"><label>Blue book</label>
+          <select id="f-bb"><option value="pending">Pending</option><option value="delivered">Delivered</option></select>
+        </div>
+      </div>
+
+      <div class="auto-field" id="af-mid" style="display:none">
+        <div class="af-label"><i class="ti ti-calendar-event" style="font-size:11px"></i> Mid-year enrollment (auto)</div>
+        <div class="af-val" id="af-mid-val">—</div>
+      </div>
+      <div class="auto-field" id="af-re" style="display:none">
+        <div class="af-label"><i class="ti ti-rotate-clockwise" style="font-size:11px"></i> Annual re-enrollment (auto)</div>
+        <div class="af-val" id="af-re-val">—</div>
+      </div>
+
+      <div class="fsec"><i class="ti ti-credit-card" style="font-size:14px"></i> Deductions</div>
+      <div class="g2">
+        <div class="fr"><label>Status</label>
+          <select id="f-ded"><option value="pending">Pending</option><option value="confirmed">Confirmed</option><option value="overdue">Overdue</option></select>
+        </div>
+        <div class="fr"><label>Confirmed date</label><input type="date" id="f-ded-date"/></div>
+      </div>
+
+      <div class="fr"><label>Notes</label><input type="text" id="f-notes" placeholder="Optional"/></div>
+    </div>
+    <div class="mfoot">
+      <button class="btn-s" onclick="closeModal()">Cancel</button>
+      <button class="btn-p" onclick="saveAccount()">Save account</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const LSKEY = 'ln_script_url_v3';
+let SCRIPT_URL = localStorage.getItem(LSKEY) || '';
+let accounts = [];
+let activeF = 'all';
+let editId = null;
+
+const today = new Date(); today.setHours(0,0,0,0);
+
+// ── DATE HELPERS ──
+function addMonths(ds, months) {
+  if (!ds) return null;
+  const d = new Date(ds + 'T00:00:00');
+  if (isNaN(d.getTime())) return null;
+  d.setMonth(d.getMonth() + months);
+  return d.toISOString().slice(0, 10);
+}
+
+function daysUntil(ds) {
+  if (!ds) return null;
+  const d = new Date(ds + 'T00:00:00');
+  if (isNaN(d.getTime())) return null;
+  return Math.round((d - today) / 86400000);
+}
+
+function fmt(ds) {
+  if (!ds) return '—';
+  const d = new Date(ds + 'T00:00:00');
+  if (isNaN(d.getTime())) return '—';
+  return (d.getMonth()+1) + '/' + d.getDate() + '/' + String(d.getFullYear()).slice(2);
+}
+
+function gcalUrl(title, ds, desc) {
+  if (!ds) return null;
+  const d = new Date(ds + 'T00:00:00');
+  if (isNaN(d.getTime())) return null;
+  const pad = n => String(n).padStart(2,'0');
+  const ymd = d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate());
+  const next = new Date(d); next.setDate(next.getDate()+1);
+  const ymd2 = next.getFullYear() + pad(next.getMonth()+1) + pad(next.getDate());
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: title,
+    dates: ymd + '/' + ymd2,
+    details: desc || '',
+    crm: 'AVAILABLE'
+  });
+  return 'https://calendar.google.com/calendar/render?' + params.toString();
+}
+
+// ── STATUS LOGIC ──
+function midDate(a) { return addMonths(a.enrollDate, 6); }
+function reDate(a) { return addMonths(a.enrollDate, 12); }
+
+function isDedOverdue(a) {
+  if (a.dedStatus === 'overdue') return true;
+  if (a.dedStatus === 'confirmed') return false;
+  if (a.enrollDate) { const d = daysUntil(a.enrollDate); if (d !== null && d < -14) return true; }
+  return false;
+}
+function isMidAlert(a) {
+  const d = daysUntil(midDate(a));
+  return d !== null && d >= 0 && d <= 42;
+}
+function isReAlert(a) {
+  const d = daysUntil(reDate(a));
+  return d !== null && d >= 0 && d <= 42;
+}
+function isMidOverdue(a) {
+  const d = daysUntil(midDate(a));
+  return d !== null && d < 0;
+}
+function isReOverdue(a) {
+  const d = daysUntil(reDate(a));
+  return d !== null && d < 0;
+}
+
+// ── SYNC ──
+function setSync(state) {
+  document.getElementById('dot').className = 'dot ' + state;
+  document.getElementById('synclbl').textContent = state === 'busy' ? 'Syncing…' : state === 'err' ? 'Offline' : 'Synced';
+}
+
+async function api(params) {
+  const url = new URL(SCRIPT_URL);
+  Object.entries(params).forEach(([k,v]) => url.searchParams.set(k, typeof v === 'object' ? JSON.stringify(v) : v));
+  const r = await fetch(url.toString(), {method:'GET', mode:'cors'});
+  return r.json();
+}
+
+async function apiGet() {
+  setSync('busy');
+  try {
+    const data = await api({action:'get'});
+    accounts = data.accounts || [];
+    setSync('ok');
+    return true;
+  } catch(e) { setSync('err'); return false; }
+}
+
+async function apiSave(acc) {
+  setSync('busy');
+  try {
+    const data = await api({action:'save', account:acc});
+    accounts = data.accounts || accounts;
+    setSync('ok');
+  } catch(e) { setSync('err'); }
+}
+
+async function apiDelete(id) {
+  setSync('busy');
+  try {
+    const data = await api({action:'delete', id:id});
+    accounts = data.accounts || accounts;
+    setSync('ok');
+  } catch(e) { setSync('err'); }
+}
+
+// ── STATS ──
+function updateStats() {
+  const t = accounts.length;
+  const bb = accounts.filter(a => a.bbStatus !== 'delivered').length;
+  const ded = accounts.filter(a => isDedOverdue(a)).length;
+  const thisWeek = accounts.filter(a => {
+    const dm = daysUntil(midDate(a)), dr = daysUntil(reDate(a));
+    return (dm !== null && dm >= 0 && dm <= 7) || (dr !== null && dr >= 0 && dr <= 7);
+  }).length;
+  const soon = accounts.filter(a => isMidAlert(a) || isReAlert(a) || isMidOverdue(a) || isReOverdue(a)).length;
+  se('s0', t, '');
+  se('s1', bb, bb > 0 ? 'w' : '');
+  se('s2', ded, ded > 0 ? 'd' : '');
+  se('s3', thisWeek, thisWeek > 0 ? 'w' : '');
+  se('s4', soon, soon > 0 ? 'w' : '');
+}
+function se(id, val, cls) {
+  const e = document.getElementById(id);
+  e.textContent = val;
+  e.className = 'sv' + (cls ? ' '+cls : '');
+}
+
+// ── FILTER ──
+function setF(f, el) {
+  activeF = f;
+  document.querySelectorAll('.fc').forEach(c => c.classList.remove('on'));
+  el.classList.add('on');
+  render();
+}
+
+// ── RENDER ──
+function render() {
+  updateStats();
+  const q = (document.getElementById('srch').value || '').toLowerCase();
+  let list = accounts.filter(a => {
+    if (q && ![a.business, a.owner||'', a.agent||''].some(s => (s||'').toLowerCase().includes(q))) return false;
+    if (activeF === 'bb' && a.bbStatus === 'delivered') return false;
+    if (activeF === 'ded' && !isDedOverdue(a)) return false;
+    if (activeF === 'mid' && !isMidAlert(a) && !isMidOverdue(a)) return false;
+    if (activeF === 're' && !isReAlert(a) && !isReOverdue(a)) return false;
+    if (activeF === 'any' && !isDedOverdue(a) && !isMidAlert(a) && !isReAlert(a) && !isMidOverdue(a) && !isReOverdue(a) && a.bbStatus === 'delivered') return false;
+    return true;
+  });
+
+  const container = document.getElementById('cards');
+  if (!list.length) {
+    container.innerHTML = `<div class="empty"><i class="ti ti-inbox"></i>${accounts.length ? 'No accounts match your filter.' : 'No accounts yet. Tap + to add your first.'}</div>`;
+    return;
+  }
+
+  container.innerHTML = list.map(a => {
+    const md = midDate(a), rd = reDate(a);
+    const dm = daysUntil(md), dr = daysUntil(rd);
+    const hasAlert = isDedOverdue(a) || isMidOverdue(a) || isReOverdue(a);
+    const hasWarn = !hasAlert && (isMidAlert(a) || isReAlert(a) || a.bbStatus !== 'delivered');
+
+    // blue book badge
+    const bbBadge = a.bbStatus === 'delivered'
+      ? `<span class="badge bok"><i class="ti ti-book"></i> Blue book delivered</span>`
+      : `<span class="badge bwn"><i class="ti ti-book"></i> Blue book pending</span>`;
+
+    // deduction badge
+    let dedBadge = '';
+    if (isDedOverdue(a)) dedBadge = `<span class="badge bdn"><i class="ti ti-alert-triangle"></i> Deductions overdue</span>`;
+    else if (a.dedStatus === 'confirmed') dedBadge = `<span class="badge bok"><i class="ti ti-check"></i> Deductions confirmed</span>`;
+    else dedBadge = `<span class="badge bgy"><i class="ti ti-clock"></i> Deductions pending</span>`;
+
+    // mid-year badge
+    let midBadge = '';
+    if (md) {
+      if (dm < 0) midBadge = `<span class="badge bdn"><i class="ti ti-bell"></i> Mid-year overdue (${fmt(md)})</span>`;
+      else if (dm <= 42) midBadge = `<span class="badge bwn"><i class="ti ti-bell"></i> Mid-year in ${dm}d (${fmt(md)})</span>`;
+      else midBadge = `<span class="badge bgy"><i class="ti ti-calendar"></i> Mid-year ${fmt(md)}</span>`;
+    }
+
+    // re-enrollment badge
+    let reBadge = '';
+    if (rd) {
+      if (dr < 0) reBadge = `<span class="badge bdn"><i class="ti ti-rotate-clockwise"></i> Re-enroll overdue (${fmt(rd)})</span>`;
+      else if (dr <= 42) reBadge = `<span class="badge bwn"><i class="ti ti-rotate-clockwise"></i> Re-enroll in ${dr}d (${fmt(rd)})</span>`;
+      else reBadge = `<span class="badge bgy"><i class="ti ti-rotate-clockwise"></i> Re-enroll ${fmt(rd)}</span>`;
+    }
+
+    // calendar links
+    const bizName = esc(a.business);
+    const midCal = md ? gcalUrl(
+      `Mid-year enrollment — ${a.business}`,
+      md,
+      `Mid-year enrollment for ${a.business}. Agent: ${a.agent||'—'}. Owner: ${a.owner||'—'}.`
+    ) : null;
+    const reCal = rd ? gcalUrl(
+      `Annual re-enrollment — ${a.business}`,
+      rd,
+      `Annual re-enrollment for ${a.business}. Agent: ${a.agent||'—'}. Owner: ${a.owner||'—'}.`
+    ) : null;
+
+    const calButtons = [];
+    if (midCal) calButtons.push(`<a href="${midCal}" target="_blank" class="cal-btn"><i class="ti ti-calendar-plus" style="font-size:13px"></i> Mid-year to calendar</a>`);
+    if (reCal) calButtons.push(`<a href="${reCal}" target="_blank" class="cal-btn"><i class="ti ti-calendar-plus" style="font-size:13px"></i> Re-enroll to calendar</a>`);
+
+    return `<div class="ac${hasAlert?' al':hasWarn?' wn':''}">
+      <div class="ch">
+        <div>
+          <div class="cb">${bizName}</div>
+          <div class="cm">${a.owner?'Owner: '+esc(a.owner)+'&nbsp;&nbsp;':''}${a.agent?'Agent: '+esc(a.agent):''}</div>
+        </div>
+        <div class="ca">
+          <button class="ib" onclick="openModal('${a.id}')" aria-label="Edit"><i class="ti ti-edit"></i></button>
+          <button class="ib" onclick="delAccount('${a.id}')" aria-label="Delete"><i class="ti ti-trash"></i></button>
+        </div>
+      </div>
+      <div class="cbg">${bbBadge}${dedBadge}${midBadge}${reBadge}</div>
+      ${calButtons.length ? `<div class="cdiv"></div><div class="cfoot">${calButtons.join('')}</div>` : ''}
+      ${a.notes ? `<div class="cnotes"><i class="ti ti-note" style="font-size:12px"></i> ${esc(a.notes)}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ── MODAL ──
+function onEnrollChange() {
+  const ds = document.getElementById('f-enroll').value;
+  const md = addMonths(ds, 6);
+  const rd = addMonths(ds, 12);
+  const afMid = document.getElementById('af-mid');
+  const afRe = document.getElementById('af-re');
+  if (md) {
+    document.getElementById('af-mid-val').textContent = fmt(md) + ' (reminder at 42 days before)';
+    afMid.style.display = 'block';
+  } else { afMid.style.display = 'none'; }
+  if (rd) {
+    document.getElementById('af-re-val').textContent = fmt(rd) + ' (reminder at 42 days before)';
+    afRe.style.display = 'block';
+  } else { afRe.style.display = 'none'; }
+}
+
+function openModal(id) {
+  editId = id || null;
+  document.getElementById('mtitle').textContent = id ? 'Edit account' : 'Add account';
+  const a = id ? accounts.find(x => x.id === id) : null;
+  document.getElementById('f-biz').value = a ? a.business : '';
+  document.getElementById('f-owner').value = a ? a.owner||'' : '';
+  document.getElementById('f-agent').value = a ? a.agent||'' : '';
+  document.getElementById('f-enroll').value = a ? a.enrollDate||'' : '';
+  document.getElementById('f-bb').value = a ? a.bbStatus||'pending' : 'pending';
+  document.getElementById('f-ded').value = a ? a.dedStatus||'pending' : 'pending';
+  document.getElementById('f-ded-date').value = a ? a.dedDate||'' : '';
+  document.getElementById('f-notes').value = a ? a.notes||'' : '';
+  onEnrollChange();
+  document.getElementById('mbg').classList.add('open');
+  setTimeout(() => document.getElementById('f-biz').focus(), 100);
+}
+
+function closeModal() { document.getElementById('mbg').classList.remove('open'); }
+function bgClick(e) { if (e.target === document.getElementById('mbg')) closeModal(); }
+
+async function saveAccount() {
+  const biz = document.getElementById('f-biz').value.trim();
+  if (!biz) { showToast('Business name is required'); return; }
+  const enroll = document.getElementById('f-enroll').value;
+  if (!enroll) { showToast('Enrollment date is required'); return; }
+  const acc = {
+    id: editId || 'a' + Date.now(),
+    business: biz,
+    owner: document.getElementById('f-owner').value.trim(),
+    agent: document.getElementById('f-agent').value.trim(),
+    enrollDate: enroll,
+    bbStatus: document.getElementById('f-bb').value,
+    dedStatus: document.getElementById('f-ded').value,
+    dedDate: document.getElementById('f-ded-date').value,
+    notes: document.getElementById('f-notes').value.trim(),
+  };
+  closeModal();
+  showToast('Saving…');
+  await apiSave(acc);
+  render();
+  showToast(editId ? 'Account updated' : 'Account added');
+}
+
+async function delAccount(id) {
+  const a = accounts.find(x => x.id === id);
+  if (!confirm('Remove ' + a.business + '?')) return;
+  await apiDelete(id);
+  render();
+  showToast('Account removed');
+}
+
+// ── TOAST ──
+let tt;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(tt);
+  tt = setTimeout(() => t.classList.remove('show'), 2200);
+}
+
+// ── CONFIG ──
+function saveConfig() {
+  const url = document.getElementById('cfg-url').value.trim();
+  if (!url || !url.startsWith('https://')) { alert('Please enter a valid URL.'); return; }
+  SCRIPT_URL = url;
+  localStorage.setItem(LSKEY, url);
+  boot();
+}
+
+async function boot() {
+  document.getElementById('cfg').classList.add('hidden');
+  document.getElementById('app').style.display = 'block';
+  document.getElementById('fab').style.display = 'flex';
+  showToast('Connecting to Google Sheet…');
+  const ok = await apiGet();
+  if (ok) { render(); showToast('Loaded ' + accounts.length + ' accounts'); }
+  else { showToast('Could not connect — check your URL'); }
+}
+
+if (SCRIPT_URL) { boot(); }
+else { document.getElementById('cfg').style.display = 'flex'; }
+</script>
+</body>
+</html>
