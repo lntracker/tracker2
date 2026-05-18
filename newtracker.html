@@ -15,128 +15,99 @@
   --ok:#166534;--ok-bg:#dcfce7;
   --warn:#92400e;--warn-bg:#fef3c7;
   --danger:#991b1b;--danger-bg:#fee2e2;
-  --gold:#b45309;--gold-bg:#fef9ee;
   --r:12px;--rs:8px;
   --sh:0 1px 3px rgba(0,0,0,0.07);--sh-lg:0 8px 32px rgba(0,0,0,0.13);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{min-height:100%;background:var(--bg);font-family:'DM Sans',system-ui,sans-serif;color:var(--text);font-size:15px;line-height:1.5}
-
-/* NAV TABS */
-.tabs{display:flex;background:var(--accent);padding:0 14px;gap:0}
-.tab{flex:1;text-align:center;padding:10px 4px;font-size:12px;font-weight:600;color:rgba(255,255,255,0.6);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s;letter-spacing:.01em}
-.tab.on{color:#fff;border-bottom-color:#fff}
-
-/* TOPBAR */
 .bar{background:var(--accent);color:#fff;padding:14px 16px 0;display:flex;align-items:center;justify-content:space-between}
 .bar-t{font-size:16px;font-weight:600}.bar-s{font-size:11px;opacity:.7;margin-top:1px}
 .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;transition:background .3s;flex-shrink:0}
 .dot.busy{background:#fbbf24;animation:pu 1s infinite}.dot.err{background:#f87171}
 @keyframes pu{0%,100%{opacity:1}50%{opacity:.4}}
-
-/* SCREENS */
+.tabs{display:flex;background:var(--accent);padding:0 14px;gap:0;border-top:1px solid rgba(255,255,255,0.15)}
+.tab{flex:1;text-align:center;padding:10px 4px;font-size:12px;font-weight:600;color:rgba(255,255,255,0.6);cursor:pointer;border-bottom:2px solid transparent;transition:all .15s}
+.tab.on{color:#fff;border-bottom-color:#fff}
 .screen{display:none}.screen.on{display:block}
-
-/* GOAL TRACKER */
-.goals{padding:14px}
-.goal-card{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:14px;margin-bottom:12px;box-shadow:var(--sh)}
-.goal-card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.goal-title{font-size:13px;font-weight:600;color:var(--text)}
-.goal-subtitle{font-size:11px;color:var(--text3);margin-top:1px}
-.goal-nums{display:flex;align-items:baseline;gap:6px;margin-bottom:8px}
-.goal-current{font-size:28px;font-weight:700;color:var(--accent);font-family:'DM Mono',monospace;letter-spacing:-.03em}
-.goal-target{font-size:13px;color:var(--text3)}
-.progress-bar{height:10px;background:var(--surface2);border-radius:5px;overflow:hidden;border:1px solid var(--border)}
-.progress-fill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--accent),#3b82f6);transition:width .6s ease;min-width:0}
-.progress-fill.done{background:linear-gradient(90deg,var(--ok),#16a34a)}
-.goal-pct{font-size:11px;color:var(--text3);margin-top:5px;text-align:right}
-.edit-goal-btn{background:none;border:1px solid var(--border);border-radius:6px;padding:4px 8px;font-size:11px;color:var(--text2);cursor:pointer;display:flex;align-items:center;gap:3px}
-.edit-goal-btn:hover{background:var(--surface2)}
-
-/* STATS */
 .sg{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:14px 14px 0}
 .sc{background:var(--surface);border-radius:var(--r);padding:13px 14px;border:1px solid var(--border);box-shadow:var(--sh)}
 .sl{font-size:11px;color:var(--text2);font-weight:500;margin-bottom:4px;line-height:1.3}
-.sv{font-size:26px;font-weight:600;color:var(--text);font-family:'DM Mono',monospace;letter-spacing:-.03em}
+.sv{font-size:24px;font-weight:600;color:var(--text);font-family:'DM Mono',monospace;letter-spacing:-.03em}
 .sv.w{color:#d97706}.sv.d{color:#dc2626}.sv.g{color:var(--ok)}
-
-/* FILTERS */
 .fb{padding:12px 14px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
 .fb::-webkit-scrollbar{display:none}
 .fc{flex-shrink:0;font-size:12px;font-weight:500;padding:6px 13px;border-radius:20px;border:1px solid var(--border);background:var(--surface);color:var(--text2);cursor:pointer;transition:all .15s;white-space:nowrap}
 .fc.on{background:var(--accent);border-color:var(--accent);color:#fff}
-
-/* SEARCH */
 .sw{padding:0 14px 10px;position:relative}
 .sw input{width:100%;padding:10px 14px 10px 38px;border:1px solid var(--border);border-radius:var(--rs);font-size:14px;font-family:'DM Sans',sans-serif;background:var(--surface);color:var(--text);outline:none}
 .sw input:focus{border-color:var(--accent)}
 .si{position:absolute;left:28px;top:50%;transform:translateY(-50%);color:var(--text3);font-size:16px;pointer-events:none}
-
-/* ACCOUNT CARDS */
 .cl{padding:0 14px 100px;display:flex;flex-direction:column;gap:10px}
 .ac{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
 .ac.al{border-left:3px solid #dc2626}.ac.wn{border-left:3px solid #d97706}
-.ch{display:flex;align-items:flex-start;justify-content:space-between;padding:13px 13px 4px}
+.ch{display:flex;align-items:flex-start;justify-content:space-between;padding:13px 13px 6px}
 .cb{font-size:15px;font-weight:600;color:var(--text);line-height:1.2}
 .cm{font-size:12px;color:var(--text2);margin-top:2px}
 .cd{font-size:11px;color:var(--text3);margin-top:2px}
-.ca{display:flex;gap:4px;flex-shrink:0;margin-left:8px}
+.ca{display:flex;gap:2px;flex-shrink:0;margin-left:8px}
 .ib{background:none;border:none;cursor:pointer;color:var(--text3);padding:5px;border-radius:6px;font-size:16px;line-height:1}
 .ib:hover{color:var(--text);background:var(--surface2)}
-.cbg{display:flex;flex-wrap:wrap;gap:6px;padding:8px 13px 10px}
-.badge{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap}
+.cbg{display:flex;flex-wrap:wrap;gap:6px;padding:6px 13px 10px}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;cursor:pointer}
+.badge.nocursor{cursor:default}
 .bok{background:var(--ok-bg);color:var(--ok)}
 .bwn{background:var(--warn-bg);color:var(--warn)}
 .bdn{background:var(--danger-bg);color:var(--danger)}
 .bgy{background:var(--surface2);color:var(--text2);border:1px solid var(--border)}
 .bac{background:var(--accent-lt);color:var(--accent-tx)}
-.bgold{background:var(--gold-bg);color:var(--gold);border:1px solid #fde68a}
 .cdiv{height:1px;background:var(--border);margin:0 13px}
-
-/* ENROLLMENT HISTORY */
-.enroll-history{padding:10px 13px}
-.eh-title{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.eh{padding:10px 13px}
+.eh-ttl{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.06em;margin-bottom:8px;display:flex;justify-content:space-between}
 .eh-row{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;background:var(--surface2);border-radius:var(--rs);margin-bottom:5px;border:1px solid var(--border)}
 .eh-row:last-child{margin-bottom:0}
-.eh-left{display:flex;flex-direction:column;gap:2px}
 .eh-date{font-size:12px;font-weight:600;color:var(--text)}
-.eh-type{font-size:11px;color:var(--text3)}
-.eh-right{text-align:right}
+.eh-type{font-size:11px;color:var(--text3);margin-top:1px}
 .eh-ap{font-size:13px;font-weight:600;color:var(--accent);font-family:'DM Mono',monospace}
-.eh-ded{font-size:10px;color:var(--text3);margin-top:1px}
-.eh-total{display:flex;justify-content:space-between;align-items:center;padding:7px 10px;border-top:1px solid var(--border);margin-top:6px}
-.eh-total-lbl{font-size:11px;font-weight:700;color:var(--text2)}
-.eh-total-val{font-size:14px;font-weight:700;color:var(--accent);font-family:'DM Mono',monospace}
-
-/* NEXT DATES */
-.next-dates{display:flex;flex-wrap:wrap;gap:6px;padding:0 13px 10px}
-
-/* CAL BUTTONS */
+.eh-ded{font-size:10px;margin-top:1px}
+.eh-tot{display:flex;justify-content:space-between;padding:7px 10px;border-top:1px solid var(--border);margin-top:6px}
+.eh-tot-l{font-size:11px;font-weight:700;color:var(--text2)}
+.eh-tot-v{font-size:14px;font-weight:700;color:var(--accent);font-family:'DM Mono',monospace}
 .cfoot{padding:6px 13px 10px;display:flex;flex-wrap:wrap;gap:8px}
-.cal-btn{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:5px 10px;border-radius:20px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);cursor:pointer;text-decoration:none;white-space:nowrap;transition:all .15s}
+.cal-btn{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:5px 10px;border-radius:20px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);cursor:pointer;text-decoration:none;white-space:nowrap}
 .cal-btn:hover{background:var(--accent-lt);color:var(--accent-tx);border-color:var(--accent-tx)}
 .cnotes{font-size:11px;color:var(--text3);padding:0 13px 10px;display:flex;align-items:flex-start;gap:5px}
-
-/* FAB */
 .fab{position:fixed;bottom:22px;right:18px;width:56px;height:56px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:26px;cursor:pointer;box-shadow:var(--sh-lg);display:flex;align-items:center;justify-content:center;z-index:200;transition:transform .15s}
 .fab:active{transform:scale(.94)}
 .empty{text-align:center;padding:3rem 1rem;color:var(--text3);font-size:14px}
 .empty i{font-size:36px;display:block;margin-bottom:10px;opacity:.4}
-
-/* AGENT TAB */
-.agent-grid{padding:14px;display:flex;flex-direction:column;gap:12px;padding-bottom:80px}
+/* GOALS */
+.goals-wrap{padding:14px;padding-bottom:80px}
+.goal-card{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);padding:14px;margin-bottom:12px;box-shadow:var(--sh)}
+.goal-hd{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+.goal-title{font-size:13px;font-weight:600;color:var(--text)}
+.goal-sub{font-size:11px;color:var(--text3);margin-top:2px}
+.goal-nums{display:flex;align-items:baseline;gap:6px;margin-bottom:8px}
+.goal-cur{font-size:28px;font-weight:700;color:var(--accent);font-family:'DM Mono',monospace;letter-spacing:-.03em}
+.goal-tgt{font-size:13px;color:var(--text3)}
+.pbar{height:10px;background:var(--surface2);border-radius:5px;overflow:hidden;border:1px solid var(--border)}
+.pfill{height:100%;border-radius:5px;background:linear-gradient(90deg,var(--accent),#3b82f6);transition:width .6s ease}
+.pfill.done{background:linear-gradient(90deg,var(--ok),#16a34a)}
+.goal-pct{font-size:11px;color:var(--text3);margin-top:5px;text-align:right}
+.edit-btn{background:none;border:1px solid var(--border);border-radius:6px;padding:4px 9px;font-size:11px;color:var(--text2);cursor:pointer;display:flex;align-items:center;gap:3px;white-space:nowrap}
+.edit-btn:hover{background:var(--surface2)}
+/* AGENTS */
+.agents-wrap{padding:14px;padding-bottom:80px;display:flex;flex-direction:column;gap:12px}
 .agent-card{background:var(--surface);border-radius:var(--r);border:1px solid var(--border);overflow:hidden;box-shadow:var(--sh)}
-.agent-head{background:var(--accent);padding:12px 14px;color:#fff}
-.agent-name{font-size:15px;font-weight:600}
-.agent-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0}
-.agent-stat{padding:12px 14px;border-right:1px solid var(--border)}
+.agent-hd{background:var(--accent);padding:11px 14px;color:#fff;font-size:15px;font-weight:600}
+.agent-stats{display:grid;grid-template-columns:1fr 1fr 1fr}
+.agent-stat{padding:11px 14px;border-right:1px solid var(--border)}
 .agent-stat:last-child{border-right:none}
-.agent-stat-lbl{font-size:10px;color:var(--text3);font-weight:500;margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em}
-.agent-stat-val{font-size:20px;font-weight:700;color:var(--text);font-family:'DM Mono',monospace}
-.agent-accounts{padding:10px 14px;border-top:1px solid var(--border)}
-.agent-acct-row{font-size:12px;color:var(--text2);padding:4px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between}
-.agent-acct-row:last-child{border-bottom:none}
-
+.agent-stat-l{font-size:10px;color:var(--text3);font-weight:500;margin-bottom:3px;text-transform:uppercase;letter-spacing:.04em}
+.agent-stat-v{font-size:20px;font-weight:700;color:var(--text);font-family:'DM Mono',monospace}
+.agent-stat-v.d{color:#dc2626}
+.agent-accts{padding:10px 14px;border-top:1px solid var(--border)}
+.agent-row{font-size:12px;color:var(--text2);padding:5px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.agent-row:last-child{border-bottom:none}
 /* MODAL */
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:500;align-items:flex-end;justify-content:center}
 .modal-bg.open{display:flex}
@@ -152,31 +123,25 @@ html,body{min-height:100%;background:var(--bg);font-family:'DM Sans',system-ui,s
 .fr input,.fr select{width:100%;font-size:15px;padding:11px 13px;border:1px solid var(--border);border-radius:var(--rs);font-family:'DM Sans',sans-serif;color:var(--text);background:var(--surface);outline:none;-webkit-appearance:none;appearance:none}
 .fr input:focus,.fr select:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(27,79,138,0.1)}
 .fr .hint{font-size:11px;color:var(--text3);margin-top:4px}
-.auto-field{background:var(--surface2);border-radius:var(--rs);padding:11px 13px;font-size:14px;color:var(--text2);border:1px solid var(--border);margin-bottom:12px}
-.af-label{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
+.autofield{background:var(--surface2);border-radius:var(--rs);padding:11px 13px;border:1px solid var(--border);margin-bottom:12px}
+.af-lbl{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px}
 .af-val{font-size:14px;color:var(--text);font-weight:500}
 .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.toggle-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
-.toggle-row:last-of-type{border-bottom:none}
-.toggle-label{font-size:14px;color:var(--text);font-weight:500}
-.toggle-sub{font-size:12px;color:var(--text3);margin-top:2px}
+.trow{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border)}
+.trow:last-of-type{border-bottom:none}
+.trow-lbl{font-size:14px;color:var(--text);font-weight:500}
+.trow-sub{font-size:12px;color:var(--text3);margin-top:2px}
 .toggle{position:relative;width:44px;height:24px;flex-shrink:0}
 .toggle input{opacity:0;width:0;height:0;position:absolute}
-.toggle-slider{position:absolute;inset:0;background:#ddd;border-radius:12px;transition:.3s;cursor:pointer}
-.toggle-slider:before{content:'';position:absolute;width:18px;height:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s;box-shadow:0 1px 3px rgba(0,0,0,0.2)}
-.toggle input:checked + .toggle-slider{background:var(--accent)}
-.toggle input:checked + .toggle-slider:before{transform:translateX(20px)}
+.tslider{position:absolute;inset:0;background:#ddd;border-radius:12px;transition:.3s;cursor:pointer}
+.tslider:before{content:'';position:absolute;width:18px;height:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s;box-shadow:0 1px 3px rgba(0,0,0,0.2)}
+.toggle input:checked+.tslider{background:var(--accent)}
+.toggle input:checked+.tslider:before{transform:translateX(20px)}
 .mfoot{padding:12px 18px;border-top:1px solid var(--border);display:flex;gap:10px;position:sticky;bottom:0;background:var(--surface)}
 .btn-p{flex:1;padding:13px;background:var(--accent);color:#fff;border:none;border-radius:var(--rs);font-size:15px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer}
-.btn-p:active{opacity:.85}
 .btn-s{padding:13px 18px;background:var(--surface2);color:var(--text2);border:1px solid var(--border);border-radius:var(--rs);font-size:15px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer}
-.btn-danger{padding:13px 18px;background:var(--danger-bg);color:var(--danger);border:1px solid #fca5a5;border-radius:var(--rs);font-size:15px;font-weight:500;font-family:'DM Sans',sans-serif;cursor:pointer}
-
-/* TOAST */
 .toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a1917;color:#fff;padding:10px 18px;border-radius:20px;font-size:13px;font-weight:500;z-index:999;opacity:0;transition:all .25s;pointer-events:none;white-space:nowrap}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-/* SETUP SCREEN */
 #cfg{position:fixed;inset:0;background:var(--bg);z-index:900;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem}
 #cfg.hidden{display:none}
 .cfg-logo{font-size:44px;margin-bottom:1rem;color:var(--accent)}
@@ -190,7 +155,6 @@ html,body{min-height:100%;background:var(--bg);font-family:'DM Sans',system-ui,s
 </head>
 <body>
 
-<!-- SETUP SCREEN -->
 <div id="cfg">
   <div class="cfg-logo"><i class="ti ti-building-skyscraper"></i></div>
   <div class="cfg-title">LN Worksite Tracker</div>
@@ -200,35 +164,29 @@ html,body{min-height:100%;background:var(--bg);font-family:'DM Sans',system-ui,s
   <div class="cfg-hint">You only need to do this once per device.</div>
 </div>
 
-<!-- MAIN APP -->
 <div id="app" style="display:none">
   <div class="bar">
-    <div>
-      <div class="bar-t">LN Worksite Tracker</div>
-      <div class="bar-s">Liberty National</div>
-    </div>
+    <div><div class="bar-t">LN Worksite Tracker</div><div class="bar-s">Liberty National</div></div>
     <div style="display:flex;align-items:center;gap:8px">
       <span style="font-size:11px;opacity:.8" id="synclbl">Synced</span>
       <div class="dot" id="dot"></div>
     </div>
   </div>
-
   <div class="tabs">
     <div class="tab on" onclick="showTab('accounts',this)"><i class="ti ti-building"></i> Accounts</div>
     <div class="tab" onclick="showTab('goals',this)"><i class="ti ti-target"></i> Goals</div>
     <div class="tab" onclick="showTab('agents',this)"><i class="ti ti-users"></i> Agents</div>
   </div>
 
-  <!-- ACCOUNTS TAB -->
+  <!-- ACCOUNTS -->
   <div class="screen on" id="tab-accounts">
     <div class="sg">
-      <div class="sc"><div class="sl">Total accounts</div><div class="sv" id="s0">—</div></div>
-      <div class="sc"><div class="sl">Total AP written</div><div class="sv g" id="s1">—</div></div>
-      <div class="sc"><div class="sl">Deductions overdue</div><div class="sv" id="s2">—</div></div>
-      <div class="sc"><div class="sl">Blue books pending</div><div class="sv" id="s3">—</div></div>
-      <div class="sc" style="grid-column:1/-1"><div class="sl">Mid-year or re-enrollment due within 42 days</div><div class="sv" id="s4">—</div></div>
+      <div class="sc"><div class="sl">Total accounts</div><div class="sv" id="s0">0</div></div>
+      <div class="sc"><div class="sl">Total AP written</div><div class="sv g" id="s1">$0</div></div>
+      <div class="sc"><div class="sl">Deductions overdue</div><div class="sv" id="s2">0</div></div>
+      <div class="sc"><div class="sl">Blue books pending</div><div class="sv" id="s3">0</div></div>
+      <div class="sc" style="grid-column:1/-1"><div class="sl">Enrollments due within 42 days</div><div class="sv" id="s4">0</div></div>
     </div>
-
     <div class="fb">
       <div class="fc on" onclick="setF('all',this)">All</div>
       <div class="fc" onclick="setF('bb',this)">Blue book pending</div>
@@ -237,462 +195,335 @@ html,body{min-height:100%;background:var(--bg);font-family:'DM Sans',system-ui,s
       <div class="fc" onclick="setF('re',this)">Re-enrollment due</div>
       <div class="fc" onclick="setF('any',this)">Any alert</div>
     </div>
-
-    <div class="sw">
-      <i class="ti ti-search si"></i>
-      <input type="text" id="srch" placeholder="Search business, agent, owner..." oninput="render()"/>
-    </div>
-
+    <div class="sw"><i class="ti ti-search si"></i><input type="text" id="srch" placeholder="Search business, agent, owner..." oninput="render()"/></div>
     <div class="cl" id="cards"></div>
   </div>
 
-  <!-- GOALS TAB -->
+  <!-- GOALS -->
   <div class="screen" id="tab-goals">
-    <div class="goals" id="goals-content"></div>
+    <div class="goals-wrap" id="goals-content"></div>
   </div>
 
-  <!-- AGENTS TAB -->
+  <!-- AGENTS -->
   <div class="screen" id="tab-agents">
-    <div class="agent-grid" id="agent-content"></div>
+    <div class="agents-wrap" id="agents-content"></div>
   </div>
 </div>
 
-<button class="fab" id="fab" onclick="openModal()" style="display:none" aria-label="Add account">
-  <i class="ti ti-plus"></i>
-</button>
+<button class="fab" id="fab" onclick="openModal()" style="display:none"><i class="ti ti-plus"></i></button>
 
 <!-- ADD/EDIT ACCOUNT MODAL -->
-<div class="modal-bg" id="mbg" onclick="bgClick(event)">
+<div class="modal-bg" id="mbg" onclick="if(event.target===this)closeModal()">
   <div class="modal">
     <div class="mh"></div>
-    <div class="mhd">
-      <h3 id="mtitle">Add account</h3>
-      <button class="ib" onclick="closeModal()" aria-label="Close"><i class="ti ti-x"></i></button>
-    </div>
+    <div class="mhd"><h3 id="mtitle">Add account</h3><button class="ib" onclick="closeModal()"><i class="ti ti-x"></i></button></div>
     <div class="mb">
       <div class="fsec"><i class="ti ti-building" style="font-size:14px"></i> Business info</div>
-      <div class="fr"><label>Business name *</label><input type="text" id="f-biz" autocomplete="organization"/></div>
+      <div class="fr"><label>Business name *</label><input type="text" id="f-biz"/></div>
       <div class="g2">
         <div class="fr"><label>Account owner</label><input type="text" id="f-owner" placeholder="Your name"/></div>
         <div class="fr"><label>Agent assigned</label><input type="text" id="f-agent" placeholder="Agent name"/></div>
       </div>
-
       <div class="fsec"><i class="ti ti-calendar" style="font-size:14px"></i> Initial enrollment</div>
-      <div class="fr">
-        <label>Enrollment date *</label>
-        <input type="date" id="f-enroll" oninput="onEnrollChange()"/>
-        <div class="hint">Mid-year (6mo) and re-enrollment (12mo) auto-calculate from this date</div>
+      <div class="g2">
+        <div class="fr"><label>Enrollment date *</label><input type="date" id="f-enroll" oninput="onEnrollChange()"/></div>
+        <div class="fr"><label>AP Written ($)</label><input type="number" id="f-ap" placeholder="0.00" min="0" step="0.01"/></div>
       </div>
-      <div class="fr"><label>AP Written ($)</label><input type="number" id="f-ap" placeholder="0.00" min="0" step="0.01"/></div>
-      <div class="auto-field" id="af-mid" style="display:none">
-        <div class="af-label"><i class="ti ti-calendar-event" style="font-size:11px"></i> Mid-year enrollment (auto)</div>
-        <div class="af-val" id="af-mid-val">—</div>
-      </div>
-      <div class="auto-field" id="af-re" style="display:none">
-        <div class="af-label"><i class="ti ti-rotate-clockwise" style="font-size:11px"></i> Annual re-enrollment (auto)</div>
-        <div class="af-val" id="af-re-val">—</div>
-      </div>
-
+      <div class="autofield" id="af-mid" style="display:none"><div class="af-lbl"><i class="ti ti-calendar-event" style="font-size:11px"></i> Mid-year (auto)</div><div class="af-val" id="af-mid-val"></div></div>
+      <div class="autofield" id="af-re" style="display:none"><div class="af-lbl"><i class="ti ti-rotate-clockwise" style="font-size:11px"></i> Re-enrollment (auto)</div><div class="af-val" id="af-re-val"></div></div>
       <div class="fsec"><i class="ti ti-toggle-right" style="font-size:14px"></i> Status</div>
-      <div class="toggle-row">
-        <div>
-          <div class="toggle-label">Blue book delivered</div>
-          <div class="toggle-sub">One-time delivery per account</div>
-        </div>
-        <label class="toggle"><input type="checkbox" id="f-bb"/><span class="toggle-slider"></span></label>
+      <div class="trow">
+        <div><div class="trow-lbl">Blue book delivered</div><div class="trow-sub">One-time per account</div></div>
+        <label class="toggle"><input type="checkbox" id="f-bb"/><span class="tslider"></span></label>
       </div>
-      <div class="toggle-row">
-        <div>
-          <div class="toggle-label">Deductions confirmed</div>
-          <div class="toggle-sub">Resets to pending on new enrollment</div>
-        </div>
-        <label class="toggle"><input type="checkbox" id="f-ded"/><span class="toggle-slider"></span></label>
+      <div class="trow">
+        <div><div class="trow-lbl">Deductions confirmed</div><div class="trow-sub">Resets on new enrollment</div></div>
+        <label class="toggle"><input type="checkbox" id="f-ded"/><span class="tslider"></span></label>
       </div>
-
       <div class="fr" style="margin-top:14px"><label>Notes</label><input type="text" id="f-notes" placeholder="Optional"/></div>
     </div>
-    <div class="mfoot">
-      <button class="btn-s" onclick="closeModal()">Cancel</button>
-      <button class="btn-p" onclick="saveAccount()">Save account</button>
-    </div>
+    <div class="mfoot"><button class="btn-s" onclick="closeModal()">Cancel</button><button class="btn-p" onclick="saveAccount()">Save account</button></div>
   </div>
 </div>
 
 <!-- ADD ENROLLMENT MODAL -->
-<div class="modal-bg" id="embg" onclick="embgClick(event)">
+<div class="modal-bg" id="embg" onclick="if(event.target===this)closeEnrollModal()">
   <div class="modal">
     <div class="mh"></div>
-    <div class="mhd">
-      <h3 id="em-title">Add enrollment</h3>
-      <button class="ib" onclick="closeEnrollModal()" aria-label="Close"><i class="ti ti-x"></i></button>
-    </div>
+    <div class="mhd"><h3 id="em-title">Add enrollment</h3><button class="ib" onclick="closeEnrollModal()"><i class="ti ti-x"></i></button></div>
     <div class="mb">
       <div class="fsec"><i class="ti ti-calendar-plus" style="font-size:14px"></i> New enrollment</div>
-      <div class="fr"><label>Enrollment date *</label><input type="date" id="em-date" oninput="onEmDateChange()"/></div>
-      <div class="fr"><label>AP Written ($) *</label><input type="number" id="em-ap" placeholder="0.00" min="0" step="0.01"/></div>
-      <div class="auto-field" id="em-af-mid" style="display:none">
-        <div class="af-label"><i class="ti ti-calendar-event" style="font-size:11px"></i> Next mid-year (auto)</div>
-        <div class="af-val" id="em-af-mid-val">—</div>
+      <div class="g2">
+        <div class="fr"><label>Enrollment date *</label><input type="date" id="em-date" oninput="onEmDateChange()"/></div>
+        <div class="fr"><label>AP Written ($) *</label><input type="number" id="em-ap" placeholder="0.00" min="0" step="0.01"/></div>
       </div>
-      <div class="auto-field" id="em-af-re" style="display:none">
-        <div class="af-label"><i class="ti ti-rotate-clockwise" style="font-size:11px"></i> Next re-enrollment (auto)</div>
-        <div class="af-val" id="em-af-re-val">—</div>
-      </div>
+      <div class="autofield" id="em-af-mid" style="display:none"><div class="af-lbl">Next mid-year (auto)</div><div class="af-val" id="em-af-mid-val"></div></div>
+      <div class="autofield" id="em-af-re" style="display:none"><div class="af-lbl">Next re-enrollment (auto)</div><div class="af-val" id="em-af-re-val"></div></div>
       <div class="fsec"><i class="ti ti-toggle-right" style="font-size:14px"></i> Deductions</div>
-      <div class="toggle-row">
-        <div>
-          <div class="toggle-label">Deductions confirmed</div>
-          <div class="toggle-sub">For this enrollment</div>
-        </div>
-        <label class="toggle"><input type="checkbox" id="em-ded"/><span class="toggle-slider"></span></label>
+      <div class="trow">
+        <div><div class="trow-lbl">Deductions confirmed</div><div class="trow-sub">For this enrollment</div></div>
+        <label class="toggle"><input type="checkbox" id="em-ded"/><span class="tslider"></span></label>
       </div>
       <div class="fr" style="margin-top:14px"><label>Notes</label><input type="text" id="em-notes" placeholder="Optional"/></div>
     </div>
-    <div class="mfoot">
-      <button class="btn-s" onclick="closeEnrollModal()">Cancel</button>
-      <button class="btn-p" onclick="saveEnrollment()">Add enrollment</button>
-    </div>
+    <div class="mfoot"><button class="btn-s" onclick="closeEnrollModal()">Cancel</button><button class="btn-p" onclick="saveEnrollment()">Add enrollment</button></div>
   </div>
 </div>
 
 <!-- EDIT GOALS MODAL -->
-<div class="modal-bg" id="gbg" onclick="gbgClick(event)">
+<div class="modal-bg" id="gbg" onclick="if(event.target===this)closeGoalModal()">
   <div class="modal">
     <div class="mh"></div>
-    <div class="mhd">
-      <h3>Edit goals</h3>
-      <button class="ib" onclick="closeGoalModal()" aria-label="Close"><i class="ti ti-x"></i></button>
-    </div>
+    <div class="mhd"><h3>Edit goals</h3><button class="ib" onclick="closeGoalModal()"><i class="ti ti-x"></i></button></div>
     <div class="mb">
-      <div class="fsec"><i class="ti ti-target" style="font-size:14px"></i> GA promotion targets</div>
-      <div class="fr"><label>4-week FYA target ($)</label><input type="number" id="g-fya" placeholder="3500"/></div>
+      <div class="fsec"><i class="ti ti-target" style="font-size:14px"></i> GA promotion</div>
+      <div class="fr"><label>4-week FYA target ($)</label><input type="number" id="g-fya-tgt" placeholder="3500"/></div>
       <div class="fr"><label>Current 4-week FYA ($)</label><input type="number" id="g-fya-cur" placeholder="0"/></div>
       <div class="fsec"><i class="ti ti-chart-bar" style="font-size:14px"></i> Team production</div>
       <div class="fr"><label>Monthly AP goal ($)</label><input type="number" id="g-ap" placeholder="10000"/></div>
       <div class="fr"><label>Accounts goal</label><input type="number" id="g-accts" placeholder="30"/></div>
       <div class="fr"><label>Active agents goal</label><input type="number" id="g-agents" placeholder="6"/></div>
     </div>
-    <div class="mfoot">
-      <button class="btn-s" onclick="closeGoalModal()">Cancel</button>
-      <button class="btn-p" onclick="saveGoals()">Save goals</button>
-    </div>
+    <div class="mfoot"><button class="btn-s" onclick="closeGoalModal()">Cancel</button><button class="btn-p" onclick="saveGoals()">Save goals</button></div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
 
 <script>
-const LSKEY = 'ln_script_url_v4';
-const GOALS_KEY = 'ln_goals_v1';
+'use strict';
+const LSKEY = 'ln_url_v5';
+const GKEY = 'ln_goals_v2';
 let SCRIPT_URL = localStorage.getItem(LSKEY) || '';
 let accounts = [];
 let activeF = 'all';
 let editId = null;
 let enrollTargetId = null;
-let activeTab = 'accounts';
-let goals = JSON.parse(localStorage.getItem(GOALS_KEY) || JSON.stringify({
-  fyaTarget: 3500, fyaCurrent: 0,
-  apGoal: 10000, acctsGoal: 30, agentsGoal: 6
-}));
+let goals = JSON.parse(localStorage.getItem(GKEY) || '{"fyaTgt":3500,"fyaCur":0,"apGoal":10000,"acctsGoal":30,"agentsGoal":6}');
 
-const today = new Date(); today.setHours(0,0,0,0);
+const TODAY = new Date(); TODAY.setHours(0,0,0,0);
 
-// ── DATE HELPERS ──
-function addMonths(ds, months) {
+// DATE UTILS
+function addMonths(ds, n) {
   if (!ds) return null;
-  const d = new Date(ds + 'T00:00:00');
+  const d = new Date(ds + 'T12:00:00');
   if (isNaN(d.getTime())) return null;
-  d.setMonth(d.getMonth() + months);
-  return d.toISOString().slice(0, 10);
+  d.setMonth(d.getMonth() + n);
+  return d.toISOString().slice(0,10);
 }
 function daysUntil(ds) {
   if (!ds) return null;
-  const d = new Date(ds + 'T00:00:00');
+  const d = new Date(ds + 'T12:00:00');
   if (isNaN(d.getTime())) return null;
-  return Math.round((d - today) / 86400000);
+  return Math.round((d - TODAY) / 86400000);
 }
 function fmt(ds) {
   if (!ds) return '—';
-  const d = new Date(ds + 'T00:00:00');
+  const d = new Date(ds + 'T12:00:00');
   if (isNaN(d.getTime())) return '—';
   return (d.getMonth()+1) + '/' + d.getDate() + '/' + String(d.getFullYear()).slice(2);
 }
 function fmtMoney(n) {
-  if (!n && n !== 0) return '—';
-  return '$' + Number(n).toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
+  const v = parseFloat(n) || 0;
+  return '$' + v.toLocaleString('en-US', {minimumFractionDigits:0, maximumFractionDigits:0});
 }
 function gcalUrl(title, ds, desc) {
   if (!ds) return null;
-  const d = new Date(ds + 'T00:00:00');
+  const d = new Date(ds + 'T12:00:00');
   if (isNaN(d.getTime())) return null;
-  const pad = n => String(n).padStart(2,'0');
-  const ymd = d.getFullYear() + pad(d.getMonth()+1) + pad(d.getDate());
-  const next = new Date(d); next.setDate(next.getDate()+1);
-  const ymd2 = next.getFullYear() + pad(next.getMonth()+1) + pad(next.getDate());
-  return 'https://calendar.google.com/calendar/render?' + new URLSearchParams({
-    action:'TEMPLATE', text:title,
-    dates: ymd+'/'+ymd2, details: desc||''
-  });
+  const pad = x => String(x).padStart(2,'0');
+  const s = d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate());
+  const e = new Date(d); e.setDate(e.getDate()+1);
+  const s2 = e.getFullYear()+pad(e.getMonth()+1)+pad(e.getDate());
+  return 'https://calendar.google.com/calendar/render?' + new URLSearchParams({action:'TEMPLATE',text:title,dates:s+'/'+s2,details:desc||''});
 }
 
-// ── ACCOUNT COMPUTED FIELDS ──
-function latestEnrollment(a) {
-  if (!a.enrollments || !a.enrollments.length) return null;
-  return a.enrollments.reduce((prev, cur) => cur.date > prev.date ? cur : prev);
-}
-function nextMidDate(a) {
-  const le = latestEnrollment(a);
-  return le ? addMonths(le.date, 6) : null;
-}
-function nextReDate(a) {
-  const le = latestEnrollment(a);
-  return le ? addMonths(le.date, 12) : null;
+// ACCOUNT HELPERS
+function getEnrollments(a) { return Array.isArray(a.enrollments) ? a.enrollments : []; }
+function latestE(a) {
+  const es = getEnrollments(a);
+  if (!es.length) return null;
+  return es.reduce((p,c) => c.date > p.date ? c : p);
 }
 function totalAP(a) {
-  if (!a.enrollments || !a.enrollments.length) return 0;
-  return a.enrollments.reduce((s, e) => s + (parseFloat(e.ap) || 0), 0);
+  return getEnrollments(a).reduce((s,e) => s + (parseFloat(e.ap)||0), 0);
 }
-function latestDedStatus(a) {
-  const le = latestEnrollment(a);
-  return le ? (le.dedConfirmed ? 'confirmed' : 'pending') : 'pending';
-}
-
-// ── STATUS ──
+function nextMid(a) { const le = latestE(a); return le ? addMonths(le.date, 6) : null; }
+function nextRe(a) { const le = latestE(a); return le ? addMonths(le.date, 12) : null; }
 function isDedOverdue(a) {
-  const le = latestEnrollment(a);
-  if (!le) return false;
-  if (le.dedConfirmed) return false;
+  const le = latestE(a);
+  if (!le || le.dedConfirmed) return false;
   const d = daysUntil(le.date);
   return d !== null && d < -14;
 }
-function isMidAlert(a) {
-  const d = daysUntil(nextMidDate(a));
-  return d !== null && d >= 0 && d <= 42;
-}
-function isReAlert(a) {
-  const d = daysUntil(nextReDate(a));
-  return d !== null && d >= 0 && d <= 42;
-}
-function isMidOverdue(a) {
-  const d = daysUntil(nextMidDate(a));
-  return d !== null && d < 0;
-}
-function isReOverdue(a) {
-  const d = daysUntil(nextReDate(a));
-  return d !== null && d < 0;
-}
+function isMidAlert(a) { const d = daysUntil(nextMid(a)); return d !== null && d >= 0 && d <= 42; }
+function isReAlert(a) { const d = daysUntil(nextRe(a)); return d !== null && d >= 0 && d <= 42; }
+function isMidOver(a) { const d = daysUntil(nextMid(a)); return d !== null && d < 0; }
+function isReOver(a) { const d = daysUntil(nextRe(a)); return d !== null && d < 0; }
 
-// ── MIGRATION (converts old format to new) ──
-function migrateAccount(a) {
-  // If already has enrollments with data, no migration needed
-  if (a.enrollments && a.enrollments.length > 0) return a;
-
-  // Old format had enrollDate as a date string or Date object string
-  let enrollDate = a.enrollDate || '';
-  if (enrollDate && enrollDate.includes('GMT')) {
-    // convert "Mon May 18 2026 00:00:00 GMT-0400..." to YYYY-MM-DD
-    try {
-      const d = new Date(enrollDate);
-      if (!isNaN(d.getTime())) {
-        enrollDate = d.toISOString().slice(0,10);
-      }
-    } catch(e) { enrollDate = ''; }
-  }
-
-  if (enrollDate) {
-    a.enrollments = [{
-      id: 'e_migrated_' + a.id,
-      date: enrollDate,
-      ap: parseFloat(a.ap) || 0,
-      type: 'initial',
-      dedConfirmed: a.dedStatus === 'confirmed' || a.dedStatus === 'true',
-      dedHistory: []
-    }];
-  } else {
-    a.enrollments = [];
-  }
-
-  // migrate bbStatus
-  if (!a.hasOwnProperty('bbDelivered')) {
-    a.bbDelivered = a.bbStatus === 'delivered';
-  }
-
-  return a;
+// PARSE ACCOUNTS from sheet (everything comes back as strings)
+function parseAccount(raw) {
+  let enrollments = [];
+  try {
+    const parsed = typeof raw.enrollments === 'string' ? JSON.parse(raw.enrollments) : raw.enrollments;
+    if (Array.isArray(parsed)) {
+      enrollments = parsed.map(e => ({
+        ...e,
+        ap: parseFloat(e.ap) || 0,
+        dedConfirmed: e.dedConfirmed === true || e.dedConfirmed === 'true'
+      }));
+    }
+  } catch(err) { enrollments = []; }
+  return {
+    ...raw,
+    enrollments,
+    bbDelivered: raw.bbDelivered === true || raw.bbDelivered === 'true'
+  };
 }
 
-// ── SYNC ──
-function setSync(state) {
-  document.getElementById('dot').className = 'dot ' + state;
-  document.getElementById('synclbl').textContent = state==='busy'?'Syncing…':state==='err'?'Offline':'Synced';
+// SYNC
+function setSync(s) {
+  document.getElementById('dot').className = 'dot ' + s;
+  document.getElementById('synclbl').textContent = s==='busy'?'Syncing…':s==='err'?'Offline':'Synced';
 }
-async function api(params) {
+async function apiCall(params) {
   const url = new URL(SCRIPT_URL);
-  Object.entries(params).forEach(([k,v]) => url.searchParams.set(k, typeof v==='object'?JSON.stringify(v):v));
+  Object.entries(params).forEach(([k,v]) => url.searchParams.set(k, typeof v==='object'?JSON.stringify(v):String(v)));
   const r = await fetch(url.toString(), {method:'GET', mode:'cors'});
+  if (!r.ok) throw new Error('HTTP '+r.status);
   return r.json();
 }
 async function apiGet() {
   setSync('busy');
   try {
-    const data = await api({action:'get'});
-    accounts = (data.accounts||[]).map(a => {
-      if (typeof a.enrollments === 'string') {
-        try { a.enrollments = JSON.parse(a.enrollments); } catch(e) { a.enrollments = []; }
-      }
-      if (!Array.isArray(a.enrollments)) a.enrollments = [];
-      a.enrollments = a.enrollments.map(e => ({...e, ap: parseFloat(e.ap) || 0}));
-      // migrate old format accounts that used enrollDate/bbStatus/dedStatus directly
-      a = migrateAccount(a);
-      return a;
-    });
+    const data = await apiCall({action:'get'});
+    accounts = (data.accounts||[]).map(parseAccount);
     setSync('ok'); return true;
-  } catch(e) { setSync('err'); return false; }
+  } catch(e) { console.error('apiGet error:',e); setSync('err'); return false; }
 }
 async function apiSave(acc) {
   setSync('busy');
   try {
-    const toSave = {...acc, enrollments: JSON.stringify(acc.enrollments||[])};
-    const data = await api({action:'save', account:toSave});
-    accounts = (data.accounts||accounts).map(a => {
-      if (typeof a.enrollments === 'string') { try { a.enrollments = JSON.parse(a.enrollments); } catch(e) { a.enrollments = []; } }
-      if (!Array.isArray(a.enrollments)) a.enrollments = [];
-      a.enrollments = a.enrollments.map(e => ({...e, ap: parseFloat(e.ap) || 0}));
-      a = migrateAccount(a);
-      return a;
-    });
+    const payload = {...acc, enrollments: JSON.stringify(acc.enrollments||[]), bbDelivered: String(acc.bbDelivered||false)};
+    const data = await apiCall({action:'save', account:payload});
+    accounts = (data.accounts||accounts).map(parseAccount);
     setSync('ok');
-  } catch(e) { setSync('err'); }
+  } catch(e) { console.error('apiSave error:',e); setSync('err'); }
 }
 async function apiDelete(id) {
   setSync('busy');
   try {
-    const data = await api({action:'delete', id});
-    accounts = (data.accounts||accounts).map(a => {
-      if (typeof a.enrollments === 'string') { try { a.enrollments = JSON.parse(a.enrollments); } catch(e) { a.enrollments = []; } }
-      if (!Array.isArray(a.enrollments)) a.enrollments = [];
-      a.enrollments = a.enrollments.map(e => ({...e, ap: parseFloat(e.ap) || 0}));
-      a = migrateAccount(a);
-      return a;
-    });
+    const data = await apiCall({action:'delete', id});
+    accounts = (data.accounts||accounts).map(parseAccount);
     setSync('ok');
-  } catch(e) { setSync('err'); }
+  } catch(e) { console.error('apiDelete error:',e); setSync('err'); }
 }
 
-// ── TABS ──
+// TABS
 function showTab(tab, el) {
-  activeTab = tab;
-  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('on'));
   el.classList.add('on');
   document.getElementById('tab-'+tab).classList.add('on');
-  document.getElementById('fab').style.display = tab==='accounts' ? 'flex' : 'none';
+  document.getElementById('fab').style.display = tab==='accounts'?'flex':'none';
   if (tab==='goals') renderGoals();
   if (tab==='agents') renderAgents();
 }
 
-// ── STATS ──
+// STATS
 function updateStats() {
-  const t = accounts.length;
-  const ap = accounts.reduce((s,a) => s + totalAP(a), 0);
-  const ded = accounts.filter(a => isDedOverdue(a)).length;
-  const bb = accounts.filter(a => !a.bbDelivered).length;
-  const soon = accounts.filter(a => isMidAlert(a)||isReAlert(a)||isMidOverdue(a)||isReOverdue(a)).length;
-  se('s0',t,''); se('s1',fmtMoney(ap),'g');
-  se('s2',ded,ded>0?'d':''); se('s3',bb,bb>0?'w':'');
-  se('s4',soon,soon>0?'w':'');
+  const ap = accounts.reduce((s,a)=>s+totalAP(a),0);
+  const ded = accounts.filter(isDedOverdue).length;
+  const bb = accounts.filter(a=>!a.bbDelivered).length;
+  const due = accounts.filter(a=>isMidAlert(a)||isReAlert(a)||isMidOver(a)||isReOver(a)).length;
+  se('s0', accounts.length, '');
+  se('s1', fmtMoney(ap), 'g');
+  se('s2', ded, ded>0?'d':'');
+  se('s3', bb, bb>0?'w':'');
+  se('s4', due, due>0?'w':'');
 }
-function se(id,val,cls) {
-  const e = document.getElementById(id);
-  e.textContent = val; e.className = 'sv'+(cls?' '+cls:'');
-}
+function se(id,val,cls){const e=document.getElementById(id);e.textContent=val;e.className='sv'+(cls?' '+cls:'');}
 
-// ── FILTER ──
-function setF(f,el) {
-  activeF=f;
-  document.querySelectorAll('.fc').forEach(c=>c.classList.remove('on'));
-  el.classList.add('on'); render();
-}
+// FILTER
+function setF(f,el){activeF=f;document.querySelectorAll('.fc').forEach(c=>c.classList.remove('on'));el.classList.add('on');render();}
 
-// ── RENDER ACCOUNTS ──
+// RENDER ACCOUNTS
 function render() {
   updateStats();
-  const q = (document.getElementById('srch').value||'').toLowerCase();
-  let list = accounts.filter(a => {
-    if (q && ![a.business,a.owner||'',a.agent||''].some(s=>(s||'').toLowerCase().includes(q))) return false;
-    if (activeF==='bb' && a.bbDelivered) return false;
-    if (activeF==='ded' && !isDedOverdue(a)) return false;
-    if (activeF==='mid' && !isMidAlert(a) && !isMidOverdue(a)) return false;
-    if (activeF==='re' && !isReAlert(a) && !isReOverdue(a)) return false;
-    if (activeF==='any' && !isDedOverdue(a)&&!isMidAlert(a)&&!isReAlert(a)&&!isMidOverdue(a)&&!isReOverdue(a)&&a.bbDelivered) return false;
+  const q=(document.getElementById('srch').value||'').toLowerCase();
+  const list = accounts.filter(a=>{
+    if(q&&![a.business,a.owner||'',a.agent||''].some(s=>(s||'').toLowerCase().includes(q)))return false;
+    if(activeF==='bb'&&a.bbDelivered)return false;
+    if(activeF==='ded'&&!isDedOverdue(a))return false;
+    if(activeF==='mid'&&!isMidAlert(a)&&!isMidOver(a))return false;
+    if(activeF==='re'&&!isReAlert(a)&&!isReOver(a))return false;
+    if(activeF==='any'&&!isDedOverdue(a)&&!isMidAlert(a)&&!isReAlert(a)&&!isMidOver(a)&&!isReOver(a)&&a.bbDelivered)return false;
     return true;
   });
 
   const container = document.getElementById('cards');
-  if (!list.length) {
-    container.innerHTML = `<div class="empty"><i class="ti ti-inbox"></i>${accounts.length?'No accounts match your filter.':'No accounts yet. Tap + to add your first.'}</div>`;
+  if(!list.length){
+    container.innerHTML=`<div class="empty"><i class="ti ti-inbox"></i>${accounts.length?'No accounts match your filter.':'No accounts yet. Tap + to add your first.'}</div>`;
     return;
   }
 
-  container.innerHTML = list.map(a => {
-    const md = nextMidDate(a), rd = nextReDate(a);
+  container.innerHTML = list.map(a=>{
+    const es = getEnrollments(a);
+    const le = latestE(a);
+    const md = nextMid(a), rd = nextRe(a);
     const dm = daysUntil(md), dr = daysUntil(rd);
-    const le = latestEnrollment(a);
-    const hasAlert = isDedOverdue(a)||isMidOverdue(a)||isReOverdue(a);
-    const hasWarn = !hasAlert&&(isMidAlert(a)||isReAlert(a)||!a.bbDelivered);
     const ap = totalAP(a);
-    const initialDate = a.enrollments&&a.enrollments.length ? a.enrollments[0].date : null;
+    const initialDate = es.length ? es[0].date : null;
     const latestDate = le ? le.date : null;
+    const hasAlert = isDedOverdue(a)||isMidOver(a)||isReOver(a);
+    const hasWarn = !hasAlert&&(isMidAlert(a)||isReAlert(a)||!a.bbDelivered);
 
-    // BB badge (toggle)
+    // BB badge - tappable toggle
     const bbBadge = a.bbDelivered
-      ? `<span class="badge bok" style="cursor:pointer" onclick="toggleBB('${a.id}')" title="Click to toggle"><i class="ti ti-book"></i> Blue book delivered</span>`
-      : `<span class="badge bwn" style="cursor:pointer" onclick="toggleBB('${a.id}')" title="Click to toggle"><i class="ti ti-book"></i> Blue book pending</span>`;
+      ? `<span class="badge bok" onclick="toggleBB('${a.id}')" title="Tap to toggle"><i class="ti ti-book"></i> Blue book delivered</span>`
+      : `<span class="badge bwn" onclick="toggleBB('${a.id}')" title="Tap to toggle"><i class="ti ti-book"></i> Blue book pending</span>`;
 
-    // DED badge (toggle latest)
-    const dedConfirmed = le && le.dedConfirmed;
-    const dedBadge = isDedOverdue(a)
-      ? `<span class="badge bdn" style="cursor:pointer" onclick="toggleDed('${a.id}')" title="Click to confirm"><i class="ti ti-alert-triangle"></i> Deductions overdue</span>`
-      : dedConfirmed
-        ? `<span class="badge bok" style="cursor:pointer" onclick="toggleDed('${a.id}')" title="Click to toggle"><i class="ti ti-check"></i> Deductions confirmed</span>`
-        : `<span class="badge bgy" style="cursor:pointer" onclick="toggleDed('${a.id}')" title="Click to confirm"><i class="ti ti-clock"></i> Deductions pending</span>`;
+    // DED badge - tappable toggle
+    const dedOver = isDedOverdue(a);
+    const dedConf = le && le.dedConfirmed;
+    const dedBadge = dedOver
+      ? `<span class="badge bdn" onclick="toggleDed('${a.id}')" title="Tap to confirm"><i class="ti ti-alert-triangle"></i> Deductions overdue</span>`
+      : dedConf
+        ? `<span class="badge bok" onclick="toggleDed('${a.id}')" title="Tap to toggle"><i class="ti ti-check"></i> Deductions confirmed</span>`
+        : `<span class="badge bgy" onclick="toggleDed('${a.id}')" title="Tap to confirm"><i class="ti ti-clock"></i> Deductions pending</span>`;
 
-    // Mid badge
+    // MID badge
     let midBadge = '';
-    if (md) {
-      if (dm < 0) midBadge = `<span class="badge bdn"><i class="ti ti-bell"></i> Mid-year overdue (${fmt(md)})</span>`;
-      else if (dm <= 42) midBadge = `<span class="badge bwn"><i class="ti ti-bell"></i> Mid-year in ${dm}d (${fmt(md)})</span>`;
-      else midBadge = `<span class="badge bgy"><i class="ti ti-calendar"></i> Mid-year ${fmt(md)}</span>`;
+    if(md){
+      if(dm<0) midBadge=`<span class="badge bdn nocursor"><i class="ti ti-bell"></i> Mid-year overdue (${fmt(md)})</span>`;
+      else if(dm<=42) midBadge=`<span class="badge bwn nocursor"><i class="ti ti-bell"></i> Mid-year in ${dm}d — ${fmt(md)}</span>`;
+      else midBadge=`<span class="badge bgy nocursor"><i class="ti ti-calendar"></i> Mid-year ${fmt(md)}</span>`;
     }
 
-    // Re badge
+    // RE badge
     let reBadge = '';
-    if (rd) {
-      if (dr < 0) reBadge = `<span class="badge bdn"><i class="ti ti-rotate-clockwise"></i> Re-enroll overdue (${fmt(rd)})</span>`;
-      else if (dr <= 42) reBadge = `<span class="badge bwn"><i class="ti ti-rotate-clockwise"></i> Re-enroll in ${dr}d (${fmt(rd)})</span>`;
-      else reBadge = `<span class="badge bgy"><i class="ti ti-rotate-clockwise"></i> Re-enroll ${fmt(rd)}</span>`;
+    if(rd){
+      if(dr<0) reBadge=`<span class="badge bdn nocursor"><i class="ti ti-rotate-clockwise"></i> Re-enroll overdue (${fmt(rd)})</span>`;
+      else if(dr<=42) reBadge=`<span class="badge bwn nocursor"><i class="ti ti-rotate-clockwise"></i> Re-enroll in ${dr}d — ${fmt(rd)}</span>`;
+      else reBadge=`<span class="badge bgy nocursor"><i class="ti ti-rotate-clockwise"></i> Re-enroll ${fmt(rd)}</span>`;
     }
 
-    // Calendar links
-    const midCal = md ? gcalUrl(`Mid-year enrollment — ${a.business}`, md, `Mid-year enrollment. Agent: ${a.agent||'—'}`) : null;
-    const reCal = rd ? gcalUrl(`Annual re-enrollment — ${a.business}`, rd, `Annual re-enrollment. Agent: ${a.agent||'—'}`) : null;
+    // calendar links
+    const midCal = md ? gcalUrl(`Mid-year enrollment — ${a.business}`, md, `Mid-year enrollment. Agent: ${a.agent||'—'}. Owner: ${a.owner||'—'}.`) : null;
+    const reCal = rd ? gcalUrl(`Annual re-enrollment — ${a.business}`, rd, `Annual re-enrollment. Agent: ${a.agent||'—'}. Owner: ${a.owner||'—'}.`) : null;
     const calBtns = [
-      midCal ? `<a href="${midCal}" target="_blank" class="cal-btn"><i class="ti ti-calendar-plus" style="font-size:13px"></i> Mid-year</a>` : '',
-      reCal ? `<a href="${reCal}" target="_blank" class="cal-btn"><i class="ti ti-calendar-plus" style="font-size:13px"></i> Re-enroll</a>` : ''
+      midCal?`<a href="${midCal}" target="_blank" class="cal-btn"><i class="ti ti-calendar-plus" style="font-size:13px"></i> Mid-year to calendar</a>`:'',
+      reCal?`<a href="${reCal}" target="_blank" class="cal-btn"><i class="ti ti-calendar-plus" style="font-size:13px"></i> Re-enroll to calendar</a>`:''
     ].filter(Boolean).join('');
 
-    // Enrollment history
-    const enrollRows = (a.enrollments||[]).map((e,i) => {
-      const type = i===0 ? 'Initial enrollment' : (e.type==='mid'?'Mid-year re-enrollment':'Annual re-enrollment');
-      const dedHist = e.dedConfirmed ? '<span style="color:var(--ok)">Deductions confirmed</span>' : '<span style="color:var(--text3)">Deductions pending</span>';
+    // enrollment history rows
+    const ehRows = es.map((e,i)=>{
+      const typeLabel = i===0 ? 'Initial enrollment' : (e.type==='mid'?'Mid-year re-enrollment':'Annual re-enrollment');
+      const dedColor = e.dedConfirmed ? 'var(--ok)' : 'var(--text3)';
+      const dedLabel = e.dedConfirmed ? 'Deductions confirmed' : 'Deductions pending';
       return `<div class="eh-row">
-        <div class="eh-left">
-          <div class="eh-date">${fmt(e.date)}</div>
-          <div class="eh-type">${type}</div>
-        </div>
-        <div class="eh-right">
-          <div class="eh-ap">${fmtMoney(e.ap)}</div>
-          <div class="eh-ded">${dedHist}</div>
-        </div>
+        <div><div class="eh-date">${fmt(e.date)}</div><div class="eh-type">${typeLabel}</div></div>
+        <div style="text-align:right"><div class="eh-ap">${fmtMoney(e.ap)}</div><div class="eh-ded" style="color:${dedColor}">${dedLabel}</div></div>
       </div>`;
     }).join('');
 
@@ -700,322 +531,223 @@ function render() {
       <div class="ch">
         <div>
           <div class="cb">${esc(a.business)}</div>
-          <div class="cm">${a.owner?'Owner: '+esc(a.owner)+'&nbsp;&nbsp;':''}${a.agent?'Agent: '+esc(a.agent):''}</div>
-          <div class="cd">
-            ${initialDate?'Initial: '+fmt(initialDate):''}
-            ${latestDate&&latestDate!==initialDate?' &nbsp;·&nbsp; Latest: '+fmt(latestDate):''}
-            ${ap>0?' &nbsp;·&nbsp; Total AP: '+fmtMoney(ap):''}
-          </div>
+          <div class="cm">${a.owner?'Owner: '+esc(a.owner)+'&nbsp; ':''}${a.agent?'Agent: '+esc(a.agent):''}</div>
+          <div class="cd">${initialDate?'Initial: '+fmt(initialDate):'No enrollments'}${latestDate&&latestDate!==initialDate?' &nbsp;·&nbsp; Latest: '+fmt(latestDate):''}${ap>0?' &nbsp;·&nbsp; AP: '+fmtMoney(ap):''}</div>
         </div>
         <div class="ca">
-          <button class="ib" onclick="openEnrollModal('${a.id}')" aria-label="Add enrollment" title="Add enrollment"><i class="ti ti-calendar-plus"></i></button>
-          <button class="ib" onclick="openModal('${a.id}')" aria-label="Edit"><i class="ti ti-edit"></i></button>
-          <button class="ib" onclick="delAccount('${a.id}')" aria-label="Delete"><i class="ti ti-trash"></i></button>
+          <button class="ib" onclick="openEnrollModal('${a.id}')" title="Add enrollment"><i class="ti ti-calendar-plus"></i></button>
+          <button class="ib" onclick="openModal('${a.id}')" title="Edit"><i class="ti ti-edit"></i></button>
+          <button class="ib" onclick="delAccount('${a.id}')" title="Delete"><i class="ti ti-trash"></i></button>
         </div>
       </div>
       <div class="cbg">${bbBadge}${dedBadge}${midBadge}${reBadge}</div>
-      ${enrollRows ? `<div class="cdiv"></div><div class="enroll-history">
-        <div class="eh-title">Enrollment history <span style="font-weight:400;text-transform:none;letter-spacing:0">${(a.enrollments||[]).length} enrollment${(a.enrollments||[]).length!==1?'s':''}</span></div>
-        ${enrollRows}
-        <div class="eh-total"><span class="eh-total-lbl">Total AP written</span><span class="eh-total-val">${fmtMoney(ap)}</span></div>
-      </div>` : ''}
-      ${calBtns ? `<div class="cdiv"></div><div class="cfoot">${calBtns}</div>` : ''}
-      ${a.notes ? `<div class="cnotes"><i class="ti ti-note" style="font-size:12px;flex-shrink:0;margin-top:1px"></i> ${esc(a.notes)}</div>` : ''}
+      ${ehRows?`<div class="cdiv"></div><div class="eh"><div class="eh-ttl">Enrollment history <span style="font-weight:400">${es.length} total</span></div>${ehRows}<div class="eh-tot"><span class="eh-tot-l">Total AP written</span><span class="eh-tot-v">${fmtMoney(ap)}</span></div></div>`:''}
+      ${calBtns?`<div class="cdiv"></div><div class="cfoot">${calBtns}</div>`:''}
+      ${a.notes?`<div class="cnotes"><i class="ti ti-note" style="font-size:12px;flex-shrink:0"></i> ${esc(a.notes)}</div>`:''}
     </div>`;
   }).join('');
 }
 
-// ── TOGGLE HELPERS ──
-async function toggleBB(id) {
-  const a = accounts.find(x=>x.id===id);
-  if (!a) return;
-  a.bbDelivered = !a.bbDelivered;
-  render();
-  await apiSave(a);
-  showToast(a.bbDelivered ? 'Blue book marked delivered' : 'Blue book marked pending');
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+// TOGGLES
+async function toggleBB(id){
+  const a=accounts.find(x=>x.id===id); if(!a)return;
+  a.bbDelivered=!a.bbDelivered;
+  render(); await apiSave(a);
+  showToast(a.bbDelivered?'Blue book marked delivered':'Blue book marked pending');
+}
+async function toggleDed(id){
+  const a=accounts.find(x=>x.id===id); if(!a)return;
+  const le=latestE(a); if(!le)return;
+  le.dedConfirmed=!le.dedConfirmed;
+  if(!a.dedHistory)a.dedHistory=[];
+  a.dedHistory.push({date:new Date().toISOString().slice(0,10),status:le.dedConfirmed?'confirmed':'pending',enrollDate:le.date});
+  render(); await apiSave(a);
+  showToast(le.dedConfirmed?'Deductions confirmed':'Deductions set to pending');
 }
 
-async function toggleDed(id) {
-  const a = accounts.find(x=>x.id===id);
-  if (!a || !a.enrollments || !a.enrollments.length) return;
-  const le = latestEnrollment(a);
-  le.dedConfirmed = !le.dedConfirmed;
-  // log the change
-  if (!a.dedHistory) a.dedHistory = [];
-  a.dedHistory.push({date: new Date().toISOString().slice(0,10), status: le.dedConfirmed?'confirmed':'pending', enrollDate: le.date});
-  render();
-  await apiSave(a);
-  showToast(le.dedConfirmed ? 'Deductions confirmed' : 'Deductions set to pending');
-}
-
-// ── GOALS ──
-function renderGoals() {
+// GOALS
+function renderGoals(){
   const ap = accounts.reduce((s,a)=>s+totalAP(a),0);
   const accts = accounts.length;
   const agents = [...new Set(accounts.map(a=>a.agent).filter(Boolean))].length;
-
-  const items = [
-    {label:'4-week FYA vs GA target', sub:'$'+Number(goals.fyaCurrent||0).toLocaleString()+' of $'+Number(goals.fyaTarget||3500).toLocaleString(), cur:goals.fyaCurrent||0, target:goals.fyaTarget||3500, prefix:'$'},
-    {label:'Total AP written', sub:'This month\'s production', cur:ap, target:goals.apGoal||10000, prefix:'$'},
-    {label:'Active accounts', sub:'Total worksites managed', cur:accts, target:goals.acctsGoal||30, prefix:''},
-    {label:'Active agents', sub:'Agents with assigned accounts', cur:agents, target:goals.agentsGoal||6, prefix:''},
+  const items=[
+    {title:'4-week FYA',sub:'vs GA promotion target of '+fmtMoney(goals.fyaTgt),cur:parseFloat(goals.fyaCur)||0,tgt:parseFloat(goals.fyaTgt)||3500,money:true},
+    {title:'Total AP written',sub:'Cumulative team production',cur:ap,tgt:parseFloat(goals.apGoal)||10000,money:true},
+    {title:'Active accounts',sub:'Total worksites managed',cur:accts,tgt:parseInt(goals.acctsGoal)||30,money:false},
+    {title:'Active agents',sub:'Agents with assigned accounts',cur:agents,tgt:parseInt(goals.agentsGoal)||6,money:false},
   ];
-
-  document.getElementById('goals-content').innerHTML = `
+  document.getElementById('goals-content').innerHTML=`
     <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;margin-top:4px">
-      <div style="font-size:16px;font-weight:600;color:var(--text)">GA Promotion Goals</div>
-      <button class="edit-goal-btn" onclick="openGoalModal()"><i class="ti ti-pencil" style="font-size:12px"></i> Edit goals</button>
+      <div style="font-size:16px;font-weight:600">GA Promotion Tracker</div>
+      <button class="edit-btn" onclick="openGoalModal()"><i class="ti ti-pencil" style="font-size:12px"></i> Edit goals</button>
     </div>
-    ${items.map(item => {
-      const pct = Math.min(100, item.target>0 ? Math.round((item.cur/item.target)*100) : 0);
-      const done = pct >= 100;
-      const curFmt = item.prefix==='$' ? fmtMoney(item.cur) : item.cur;
-      const tgtFmt = item.prefix==='$' ? fmtMoney(item.target) : item.target;
+    ${items.map(item=>{
+      const pct=Math.min(100,item.tgt>0?Math.round((item.cur/item.tgt)*100):0);
+      const done=pct>=100;
+      const curFmt=item.money?fmtMoney(item.cur):item.cur;
+      const tgtFmt=item.money?fmtMoney(item.tgt):item.tgt;
       return `<div class="goal-card">
-        <div class="goal-card-head">
-          <div>
-            <div class="goal-title">${item.label}</div>
-            <div class="goal-subtitle">${item.sub}</div>
-          </div>
-          ${done ? '<span style="font-size:20px">✅</span>' : ''}
-        </div>
-        <div class="goal-nums">
-          <div class="goal-current">${curFmt}</div>
-          <div class="goal-target">of ${tgtFmt}</div>
-        </div>
-        <div class="progress-bar"><div class="progress-fill${done?' done':''}" style="width:${pct}%"></div></div>
+        <div class="goal-hd"><div><div class="goal-title">${item.title}</div><div class="goal-sub">${item.sub}</div></div>${done?'<span style="font-size:22px">✅</span>':''}</div>
+        <div class="goal-nums"><div class="goal-cur">${curFmt}</div><div class="goal-tgt">of ${tgtFmt}</div></div>
+        <div class="pbar"><div class="pfill${done?' done':''}" style="width:${pct}%"></div></div>
         <div class="goal-pct">${pct}%${done?' — Goal reached! 🎉':''}</div>
       </div>`;
     }).join('')}`;
 }
-
-function openGoalModal() {
-  document.getElementById('g-fya').value = goals.fyaTarget||3500;
-  document.getElementById('g-fya-cur').value = goals.fyaCurrent||0;
-  document.getElementById('g-ap').value = goals.apGoal||10000;
-  document.getElementById('g-accts').value = goals.acctsGoal||30;
-  document.getElementById('g-agents').value = goals.agentsGoal||6;
+function openGoalModal(){
+  document.getElementById('g-fya-tgt').value=goals.fyaTgt||3500;
+  document.getElementById('g-fya-cur').value=goals.fyaCur||0;
+  document.getElementById('g-ap').value=goals.apGoal||10000;
+  document.getElementById('g-accts').value=goals.acctsGoal||30;
+  document.getElementById('g-agents').value=goals.agentsGoal||6;
   document.getElementById('gbg').classList.add('open');
 }
-function closeGoalModal() { document.getElementById('gbg').classList.remove('open'); }
-function gbgClick(e) { if(e.target===document.getElementById('gbg')) closeGoalModal(); }
-function saveGoals() {
-  goals = {
-    fyaTarget: parseFloat(document.getElementById('g-fya').value)||3500,
-    fyaCurrent: parseFloat(document.getElementById('g-fya-cur').value)||0,
-    apGoal: parseFloat(document.getElementById('g-ap').value)||10000,
-    acctsGoal: parseInt(document.getElementById('g-accts').value)||30,
-    agentsGoal: parseInt(document.getElementById('g-agents').value)||6,
-  };
-  localStorage.setItem(GOALS_KEY, JSON.stringify(goals));
-  closeGoalModal();
-  renderGoals();
-  showToast('Goals updated');
+function closeGoalModal(){document.getElementById('gbg').classList.remove('open');}
+function saveGoals(){
+  goals={fyaTgt:parseFloat(document.getElementById('g-fya-tgt').value)||3500,fyaCur:parseFloat(document.getElementById('g-fya-cur').value)||0,apGoal:parseFloat(document.getElementById('g-ap').value)||10000,acctsGoal:parseInt(document.getElementById('g-accts').value)||30,agentsGoal:parseInt(document.getElementById('g-agents').value)||6};
+  localStorage.setItem(GKEY,JSON.stringify(goals));
+  closeGoalModal(); renderGoals(); showToast('Goals updated');
 }
 
-// ── AGENTS ──
-function renderAgents() {
-  const agentMap = {};
-  accounts.forEach(a => {
-    const agent = a.agent || 'Unassigned';
-    if (!agentMap[agent]) agentMap[agent] = {accounts:[], ap:0};
-    agentMap[agent].accounts.push(a);
-    agentMap[agent].ap += totalAP(a);
+// AGENTS
+function renderAgents(){
+  const map={};
+  accounts.forEach(a=>{
+    const ag=a.agent||'Unassigned';
+    if(!map[ag])map[ag]={accounts:[],ap:0,alerts:0};
+    map[ag].accounts.push(a);
+    map[ag].ap+=totalAP(a);
+    if(isDedOverdue(a)||isMidOver(a)||isReOver(a))map[ag].alerts++;
   });
-
-  const sorted = Object.entries(agentMap).sort((a,b) => b[1].ap - a[1].ap);
-
-  document.getElementById('agent-content').innerHTML = sorted.length ? sorted.map(([name, data]) => `
+  const sorted=Object.entries(map).sort((a,b)=>b[1].ap-a[1].ap);
+  document.getElementById('agents-content').innerHTML=sorted.length?sorted.map(([name,data])=>`
     <div class="agent-card">
-      <div class="agent-head"><div class="agent-name"><i class="ti ti-user" style="font-size:14px;opacity:.8"></i> ${esc(name)}</div></div>
+      <div class="agent-hd"><i class="ti ti-user" style="font-size:13px;opacity:.8"></i> ${esc(name)}</div>
       <div class="agent-stats">
-        <div class="agent-stat"><div class="agent-stat-lbl">Accounts</div><div class="agent-stat-val">${data.accounts.length}</div></div>
-        <div class="agent-stat"><div class="agent-stat-lbl">Total AP</div><div class="agent-stat-val" style="font-size:15px">${fmtMoney(data.ap)}</div></div>
-        <div class="agent-stat"><div class="agent-stat-lbl">Alerts</div><div class="agent-stat-val${data.accounts.filter(a=>isDedOverdue(a)||isMidOverdue(a)||isReOverdue(a)).length>0?' d':''}">${data.accounts.filter(a=>isDedOverdue(a)||isMidOverdue(a)||isReOverdue(a)).length}</div></div>
+        <div class="agent-stat"><div class="agent-stat-l">Accounts</div><div class="agent-stat-v">${data.accounts.length}</div></div>
+        <div class="agent-stat"><div class="agent-stat-l">Total AP</div><div class="agent-stat-v" style="font-size:16px">${fmtMoney(data.ap)}</div></div>
+        <div class="agent-stat"><div class="agent-stat-l">Alerts</div><div class="agent-stat-v${data.alerts>0?' d':''}">${data.alerts}</div></div>
       </div>
-      <div class="agent-accounts">
-        ${data.accounts.map(a => `<div class="agent-acct-row">
-          <span>${esc(a.business)}</span>
-          <span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--accent)">${fmtMoney(totalAP(a))}</span>
-        </div>`).join('')}
-      </div>
-    </div>
-  `).join('') : `<div class="empty"><i class="ti ti-users"></i>Add agents to accounts to see the breakdown.</div>`;
+      <div class="agent-accts">${data.accounts.map(a=>`<div class="agent-row"><span>${esc(a.business)}</span><span style="font-family:'DM Mono',monospace;font-size:12px;color:var(--accent)">${fmtMoney(totalAP(a))}</span></div>`).join('')}</div>
+    </div>`).join(''):`<div class="empty"><i class="ti ti-users"></i>Add agents to accounts to see the breakdown.</div>`;
 }
 
-// ── MODAL (ADD/EDIT ACCOUNT) ──
-function onEnrollChange() {
-  const ds = document.getElementById('f-enroll').value;
-  const md = addMonths(ds,6), rd = addMonths(ds,12);
-  const afm = document.getElementById('af-mid'), afr = document.getElementById('af-re');
-  if (md) { document.getElementById('af-mid-val').textContent = fmt(md)+' (alert at 42 days before)'; afm.style.display='block'; } else afm.style.display='none';
-  if (rd) { document.getElementById('af-re-val').textContent = fmt(rd)+' (alert at 42 days before)'; afr.style.display='block'; } else afr.style.display='none';
+// MODAL - ADD/EDIT ACCOUNT
+function onEnrollChange(){
+  const ds=document.getElementById('f-enroll').value;
+  const md=addMonths(ds,6),rd=addMonths(ds,12);
+  const afm=document.getElementById('af-mid'),afr=document.getElementById('af-re');
+  if(md){document.getElementById('af-mid-val').textContent=fmt(md)+' (alert at 42 days before)';afm.style.display='block';}else afm.style.display='none';
+  if(rd){document.getElementById('af-re-val').textContent=fmt(rd)+' (alert at 42 days before)';afr.style.display='block';}else afr.style.display='none';
 }
-
-function openModal(id) {
-  editId = id||null;
-  document.getElementById('mtitle').textContent = id?'Edit account':'Add account';
-  const a = id ? accounts.find(x=>x.id===id) : null;
-  document.getElementById('f-biz').value = a?a.business:'';
-  document.getElementById('f-owner').value = a?a.owner||'':'';
-  document.getElementById('f-agent').value = a?a.agent||'':'';
-  const initialEnroll = a&&a.enrollments&&a.enrollments.length ? a.enrollments[0].date : '';
-  document.getElementById('f-enroll').value = initialEnroll;
-  document.getElementById('f-ap').value = a&&a.enrollments&&a.enrollments.length ? a.enrollments[0].ap||'' : '';
-  document.getElementById('f-bb').checked = a?!!a.bbDelivered:false;
-  document.getElementById('f-ded').checked = a ? !!(latestEnrollment(a)&&latestEnrollment(a).dedConfirmed) : false;
-  document.getElementById('f-notes').value = a?a.notes||'':'';
+function openModal(id){
+  editId=id||null;
+  document.getElementById('mtitle').textContent=id?'Edit account':'Add account';
+  const a=id?accounts.find(x=>x.id===id):null;
+  document.getElementById('f-biz').value=a?a.business:'';
+  document.getElementById('f-owner').value=a?a.owner||'':'';
+  document.getElementById('f-agent').value=a?a.agent||'':'';
+  const es=a?getEnrollments(a):[];
+  document.getElementById('f-enroll').value=es.length?es[0].date:'';
+  document.getElementById('f-ap').value=es.length?es[0].ap||'':'';
+  document.getElementById('f-bb').checked=a?!!a.bbDelivered:false;
+  document.getElementById('f-ded').checked=a&&latestE(a)?!!latestE(a).dedConfirmed:false;
+  document.getElementById('f-notes').value=a?a.notes||'':'';
   onEnrollChange();
   document.getElementById('mbg').classList.add('open');
   setTimeout(()=>document.getElementById('f-biz').focus(),100);
 }
-function closeModal() { document.getElementById('mbg').classList.remove('open'); }
-function bgClick(e) { if(e.target===document.getElementById('mbg')) closeModal(); }
-
-async function saveAccount() {
-  const biz = document.getElementById('f-biz').value.trim();
-  if (!biz) { showToast('Business name is required'); return; }
-  const enroll = document.getElementById('f-enroll').value;
-  if (!enroll) { showToast('Enrollment date is required'); return; }
-  const ap = parseFloat(document.getElementById('f-ap').value)||0;
-  const dedConfirmed = document.getElementById('f-ded').checked;
-
+function closeModal(){document.getElementById('mbg').classList.remove('open');}
+async function saveAccount(){
+  const biz=document.getElementById('f-biz').value.trim();
+  if(!biz){showToast('Business name is required');return;}
+  const enroll=document.getElementById('f-enroll').value;
+  if(!enroll){showToast('Enrollment date is required');return;}
+  const ap=parseFloat(document.getElementById('f-ap').value)||0;
+  const dedConfirmed=document.getElementById('f-ded').checked;
+  const bbDelivered=document.getElementById('f-bb').checked;
   let acc;
-  if (editId) {
-    acc = accounts.find(x=>x.id===editId);
-    acc.business = biz;
-    acc.owner = document.getElementById('f-owner').value.trim();
-    acc.agent = document.getElementById('f-agent').value.trim();
-    acc.bbDelivered = document.getElementById('f-bb').checked;
-    acc.notes = document.getElementById('f-notes').value.trim();
-    // update initial enrollment if changed
-    if (acc.enrollments && acc.enrollments.length) {
-      acc.enrollments[0].date = enroll;
-      acc.enrollments[0].ap = parseFloat(ap) || 0;
-      acc.enrollments[0].dedConfirmed = dedConfirmed;
-    }
-  } else {
-    acc = {
-      id: 'a'+Date.now(),
-      business: biz,
-      owner: document.getElementById('f-owner').value.trim(),
-      agent: document.getElementById('f-agent').value.trim(),
-      bbDelivered: document.getElementById('f-bb').checked,
-      notes: document.getElementById('f-notes').value.trim(),
-      enrollments: [{
-        id: 'e'+Date.now(),
-        date: enroll,
-        ap: ap,
-        type: 'initial',
-        dedConfirmed: dedConfirmed,
-        dedHistory: []
-      }],
-      dedHistory: []
-    };
+  if(editId){
+    acc=accounts.find(x=>x.id===editId);
+    acc.business=biz;acc.owner=document.getElementById('f-owner').value.trim();acc.agent=document.getElementById('f-agent').value.trim();
+    acc.bbDelivered=bbDelivered;acc.notes=document.getElementById('f-notes').value.trim();
+    if(acc.enrollments&&acc.enrollments.length){acc.enrollments[0].date=enroll;acc.enrollments[0].ap=ap;acc.enrollments[0].dedConfirmed=dedConfirmed;}
+  }else{
+    acc={id:'a'+Date.now(),business:biz,owner:document.getElementById('f-owner').value.trim(),agent:document.getElementById('f-agent').value.trim(),bbDelivered,notes:document.getElementById('f-notes').value.trim(),dedHistory:[],
+      enrollments:[{id:'e'+Date.now(),date:enroll,ap,type:'initial',dedConfirmed,dedHistory:[]}]};
   }
-  closeModal();
-  showToast('Saving…');
-  await apiSave(acc);
-  render();
-  showToast(editId?'Account updated':'Account added');
+  closeModal();showToast('Saving…');await apiSave(acc);render();showToast(editId?'Account updated':'Account added');
 }
 
-// ── ADD ENROLLMENT MODAL ──
-function onEmDateChange() {
-  const ds = document.getElementById('em-date').value;
-  const md = addMonths(ds,6), rd = addMonths(ds,12);
-  const afm = document.getElementById('em-af-mid'), afr = document.getElementById('em-af-re');
-  if (md) { document.getElementById('em-af-mid-val').textContent = fmt(md); afm.style.display='block'; } else afm.style.display='none';
-  if (rd) { document.getElementById('em-af-re-val').textContent = fmt(rd); afr.style.display='block'; } else afr.style.display='none';
+// MODAL - ADD ENROLLMENT
+function onEmDateChange(){
+  const ds=document.getElementById('em-date').value;
+  const md=addMonths(ds,6),rd=addMonths(ds,12);
+  const afm=document.getElementById('em-af-mid'),afr=document.getElementById('em-af-re');
+  if(md){document.getElementById('em-af-mid-val').textContent=fmt(md);afm.style.display='block';}else afm.style.display='none';
+  if(rd){document.getElementById('em-af-re-val').textContent=fmt(rd);afr.style.display='block';}else afr.style.display='none';
 }
-
-function openEnrollModal(id) {
-  enrollTargetId = id;
-  const a = accounts.find(x=>x.id===id);
-  document.getElementById('em-title').textContent = 'Add enrollment — '+a.business;
-  document.getElementById('em-date').value = '';
-  document.getElementById('em-ap').value = '';
-  document.getElementById('em-ded').checked = false;
-  document.getElementById('em-notes').value = '';
-  document.getElementById('em-af-mid').style.display='none';
-  document.getElementById('em-af-re').style.display='none';
+function openEnrollModal(id){
+  enrollTargetId=id;
+  const a=accounts.find(x=>x.id===id);
+  document.getElementById('em-title').textContent='Add enrollment — '+a.business;
+  document.getElementById('em-date').value='';document.getElementById('em-ap').value='';
+  document.getElementById('em-ded').checked=false;document.getElementById('em-notes').value='';
+  document.getElementById('em-af-mid').style.display='none';document.getElementById('em-af-re').style.display='none';
   document.getElementById('embg').classList.add('open');
   setTimeout(()=>document.getElementById('em-date').focus(),100);
 }
-function closeEnrollModal() { document.getElementById('embg').classList.remove('open'); }
-function embgClick(e) { if(e.target===document.getElementById('embg')) closeEnrollModal(); }
-
-async function saveEnrollment() {
-  const date = document.getElementById('em-date').value;
-  if (!date) { showToast('Enrollment date is required'); return; }
-  const ap = parseFloat(document.getElementById('em-ap').value)||0;
-  const dedConfirmed = document.getElementById('em-ded').checked;
-
-  const a = accounts.find(x=>x.id===enrollTargetId);
-  if (!a) return;
-
-  // determine type based on proximity to expected dates
-  const le = latestEnrollment(a);
-  const expectedMid = le ? addMonths(le.date,6) : null;
-  const expectedRe = le ? addMonths(le.date,12) : null;
-  let type = 're';
-  if (expectedMid && Math.abs(daysUntil(expectedMid)) < Math.abs(daysUntil(expectedRe))) type = 'mid';
-
-  const newEnroll = {
-    id: 'e'+Date.now(),
-    date, ap: parseFloat(ap)||0, type,
-    dedConfirmed,
-    dedHistory: []
-  };
-
-  if (!a.enrollments) a.enrollments = [];
-  a.enrollments.push(newEnroll);
+function closeEnrollModal(){document.getElementById('embg').classList.remove('open');}
+async function saveEnrollment(){
+  const date=document.getElementById('em-date').value;
+  if(!date){showToast('Enrollment date is required');return;}
+  const ap=parseFloat(document.getElementById('em-ap').value)||0;
+  const dedConfirmed=document.getElementById('em-ded').checked;
+  const a=accounts.find(x=>x.id===enrollTargetId);
+  if(!a)return;
+  const le=latestE(a);
+  const expMid=le?addMonths(le.date,6):null;
+  const expRe=le?addMonths(le.date,12):null;
+  let type='re';
+  if(expMid&&expRe){
+    const dMid=Math.abs(daysUntil(expMid)||999),dRe=Math.abs(daysUntil(expRe)||999);
+    if(dMid<dRe)type='mid';
+  }
+  if(!a.enrollments)a.enrollments=[];
+  a.enrollments.push({id:'e'+Date.now(),date,ap,type,dedConfirmed,dedHistory:[]});
   a.enrollments.sort((x,y)=>x.date.localeCompare(y.date));
-
-  closeEnrollModal();
-  showToast('Saving…');
-  await apiSave(a);
-  render();
-  showToast('Enrollment added');
+  closeEnrollModal();showToast('Saving…');await apiSave(a);render();showToast('Enrollment added');
 }
 
-// ── DELETE ──
-async function delAccount(id) {
-  const a = accounts.find(x=>x.id===id);
-  if (!confirm('Remove '+a.business+'? This cannot be undone.')) return;
-  await apiDelete(id);
-  render();
-  showToast('Account removed');
+// DELETE
+async function delAccount(id){
+  const a=accounts.find(x=>x.id===id);
+  if(!confirm('Remove '+a.business+'?'))return;
+  await apiDelete(id);render();showToast('Account removed');
 }
 
-// ── TOAST ──
+// TOAST
 let tt;
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  clearTimeout(tt); tt=setTimeout(()=>t.classList.remove('show'),2200);
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2200);}
+
+// CONFIG
+function saveConfig(){
+  const url=document.getElementById('cfg-url').value.trim();
+  if(!url||!url.startsWith('https://')){alert('Please enter a valid URL.');return;}
+  SCRIPT_URL=url;localStorage.setItem(LSKEY,url);boot();
 }
-
-function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-// ── CONFIG ──
-function saveConfig() {
-  const url = document.getElementById('cfg-url').value.trim();
-  if (!url||!url.startsWith('https://')) { alert('Please enter a valid URL.'); return; }
-  SCRIPT_URL=url; localStorage.setItem(LSKEY,url); boot();
-}
-
-async function boot() {
+async function boot(){
   document.getElementById('cfg').classList.add('hidden');
   document.getElementById('app').style.display='block';
   document.getElementById('fab').style.display='flex';
-  showToast('Connecting to Google Sheet…');
-  const ok = await apiGet();
-  if (ok) { render(); showToast('Loaded '+accounts.length+' accounts'); }
-  else { showToast('Could not connect — check your URL'); }
+  showToast('Connecting…');
+  const ok=await apiGet();
+  if(ok){render();showToast('Loaded '+accounts.length+' accounts');}
+  else showToast('Could not connect — check your URL');
 }
-
-if (SCRIPT_URL) { boot(); } else { document.getElementById('cfg').style.display='flex'; }
+if(SCRIPT_URL){boot();}else{document.getElementById('cfg').style.display='flex';}
 </script>
 </body>
 </html>
