@@ -482,6 +482,44 @@ function isReOverdue(a) {
   return d !== null && d < 0;
 }
 
+// ── MIGRATION (converts old format to new) ──
+function migrateAccount(a) {
+  // If already has enrollments with data, no migration needed
+  if (a.enrollments && a.enrollments.length > 0) return a;
+
+  // Old format had enrollDate as a date string or Date object string
+  let enrollDate = a.enrollDate || '';
+  if (enrollDate && enrollDate.includes('GMT')) {
+    // convert "Mon May 18 2026 00:00:00 GMT-0400..." to YYYY-MM-DD
+    try {
+      const d = new Date(enrollDate);
+      if (!isNaN(d.getTime())) {
+        enrollDate = d.toISOString().slice(0,10);
+      }
+    } catch(e) { enrollDate = ''; }
+  }
+
+  if (enrollDate) {
+    a.enrollments = [{
+      id: 'e_migrated_' + a.id,
+      date: enrollDate,
+      ap: parseFloat(a.ap) || 0,
+      type: 'initial',
+      dedConfirmed: a.dedStatus === 'confirmed' || a.dedStatus === 'true',
+      dedHistory: []
+    }];
+  } else {
+    a.enrollments = [];
+  }
+
+  // migrate bbStatus
+  if (!a.hasOwnProperty('bbDelivered')) {
+    a.bbDelivered = a.bbStatus === 'delivered';
+  }
+
+  return a;
+}
+
 // ── SYNC ──
 function setSync(state) {
   document.getElementById('dot').className = 'dot ' + state;
@@ -503,6 +541,8 @@ async function apiGet() {
       }
       if (!Array.isArray(a.enrollments)) a.enrollments = [];
       a.enrollments = a.enrollments.map(e => ({...e, ap: parseFloat(e.ap) || 0}));
+      // migrate old format accounts that used enrollDate/bbStatus/dedStatus directly
+      a = migrateAccount(a);
       return a;
     });
     setSync('ok'); return true;
@@ -517,6 +557,7 @@ async function apiSave(acc) {
       if (typeof a.enrollments === 'string') { try { a.enrollments = JSON.parse(a.enrollments); } catch(e) { a.enrollments = []; } }
       if (!Array.isArray(a.enrollments)) a.enrollments = [];
       a.enrollments = a.enrollments.map(e => ({...e, ap: parseFloat(e.ap) || 0}));
+      a = migrateAccount(a);
       return a;
     });
     setSync('ok');
@@ -530,6 +571,7 @@ async function apiDelete(id) {
       if (typeof a.enrollments === 'string') { try { a.enrollments = JSON.parse(a.enrollments); } catch(e) { a.enrollments = []; } }
       if (!Array.isArray(a.enrollments)) a.enrollments = [];
       a.enrollments = a.enrollments.map(e => ({...e, ap: parseFloat(e.ap) || 0}));
+      a = migrateAccount(a);
       return a;
     });
     setSync('ok');
