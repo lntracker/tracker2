@@ -449,7 +449,7 @@ function nextReDate(a) {
   return le ? addMonths(le.date, 12) : null;
 }
 function totalAP(a) {
-  if (!a.enrollments) return 0;
+  if (!a.enrollments || !a.enrollments.length) return 0;
   return a.enrollments.reduce((s, e) => s + (parseFloat(e.ap) || 0), 0);
 }
 function latestDedStatus(a) {
@@ -502,6 +502,7 @@ async function apiGet() {
         try { a.enrollments = JSON.parse(a.enrollments); } catch(e) { a.enrollments = []; }
       }
       if (!Array.isArray(a.enrollments)) a.enrollments = [];
+      a.enrollments = a.enrollments.map(e => ({...e, ap: parseFloat(e.ap) || 0}));
       return a;
     });
     setSync('ok'); return true;
@@ -515,6 +516,7 @@ async function apiSave(acc) {
     accounts = (data.accounts||accounts).map(a => {
       if (typeof a.enrollments === 'string') { try { a.enrollments = JSON.parse(a.enrollments); } catch(e) { a.enrollments = []; } }
       if (!Array.isArray(a.enrollments)) a.enrollments = [];
+      a.enrollments = a.enrollments.map(e => ({...e, ap: parseFloat(e.ap) || 0}));
       return a;
     });
     setSync('ok');
@@ -527,6 +529,7 @@ async function apiDelete(id) {
     accounts = (data.accounts||accounts).map(a => {
       if (typeof a.enrollments === 'string') { try { a.enrollments = JSON.parse(a.enrollments); } catch(e) { a.enrollments = []; } }
       if (!Array.isArray(a.enrollments)) a.enrollments = [];
+      a.enrollments = a.enrollments.map(e => ({...e, ap: parseFloat(e.ap) || 0}));
       return a;
     });
     setSync('ok');
@@ -846,7 +849,7 @@ async function saveAccount() {
     // update initial enrollment if changed
     if (acc.enrollments && acc.enrollments.length) {
       acc.enrollments[0].date = enroll;
-      acc.enrollments[0].ap = ap;
+      acc.enrollments[0].ap = parseFloat(ap) || 0;
       acc.enrollments[0].dedConfirmed = dedConfirmed;
     }
   } else {
@@ -918,7 +921,7 @@ async function saveEnrollment() {
 
   const newEnroll = {
     id: 'e'+Date.now(),
-    date, ap, type,
+    date, ap: parseFloat(ap)||0, type,
     dedConfirmed,
     dedHistory: []
   };
